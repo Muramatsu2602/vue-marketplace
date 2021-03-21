@@ -1,1 +1,1 @@
-# vue-marketplace
+# Simple Marketplace Website using Vue.js
