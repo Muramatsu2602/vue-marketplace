@@ -8,6 +8,7 @@
       <div v-for="card in listOfCards" :key="card.id" class="card">
         <p>ID: {{ card.id }}</p>
         {{ card.name }}
+        {{ card.url }}
       </div>
     </div>
 
