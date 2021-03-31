@@ -8,17 +8,12 @@
       <div v-for="card in listOfCards" :key="card.id" class="card">
         <p>ID: {{ card.id }}</p>
         {{ card.name }}
-        {{ card.url }}
       </div>
     </div>
 
     <h1 style="margin-top: 100px">Lesson 2: Yoyo's</h1>
     <options />
     <composition-api />
-
-    <!-- <h1>Lesson 2: Challenge</h1>
-    <meu-composition />
-    <meu-option /> -->
 
     <h1>Lesson 3: Yoyo's</h1>
     <div>Hello</div>
@@ -31,13 +26,10 @@
   <div v-else>Loading your app...</div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { ref, defineComponent, computed } from "vue";
 import Options from "@/components/OptionsApi.vue";
 import CompositionApi from "@/components/CompositionApi.vue";
-
-import MeuOption from "@/components/desafio-aula2/MeuOption.vue";
-import MeuComposition from "@/components/desafio-aula2/MeuComposition.vue";
 
 import useAuth from "@/modules/auth";
 import useCards from "@/modules/cards";
@@ -46,8 +38,6 @@ export default defineComponent({
   components: {
     Options,
     CompositionApi,
-    MeuComposition,
-    MeuOption,
   },
 
   setup() {
@@ -75,7 +65,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .card {
   border: 2px solid black;
   padding: 1rem;
