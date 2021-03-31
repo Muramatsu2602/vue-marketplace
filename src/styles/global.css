@@ -1,0 +1,235 @@
+:root {
+  /*Basic Pallete*/
+  --color-white-background: #ffffff;
+  --color-background: #ebebeb;
+  --color-primary-light: #a1dfe7;
+  --color-primary-medium: #42becf; /*Blue from ICMC Jr*/
+  --color-primary-dark: #2d828d;
+  --color-secondary-light: #fadc7a;
+  --color-secondary-medium: #f9d14e; /*Yellow from ICMC-jr*/
+  --color-secondary-dark: #e2be47;
+
+  /*Element Pallet*/
+  --color-green: #04d361;
+  --color-green-lighter: #82e9b0;
+  --color-another-green: #24ef7f;
+  --color-red: #e33d3d;
+  --color-red-lighter: #f19e9e;
+
+  /*Text Pallete*/
+  --color-text-title: #000000;
+  --color-text-complement: #9b9b9b;
+  --color-text-base-lighter: #c4c4c4;
+  --color-text-base: #777777;
+  --color-text-inputs: #101011;
+
+  --color-line-in-white: #e6e6f0;
+  --color-hover: #ebebf5;
+  --color-input-background: #ebebeb;
+  --color-button-text: #ffffff;
+  --color-box-base: #ffffff;
+  --color-box-footer: #fafafc;
+  --color-small-info: #c1bccc;
+
+  --text-small: 16px;
+  --text-medium: 18px;
+  --text-big: 24px;
+  --text-bigger: 36px;
+  --text-thicc: 48px;
+  --text-extra-thicc: 56px;
+  --text-titan: 144px;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+
+  color: var(--color-text-title);
+  background: var(--color-input-background);
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: var(--color-text-complement);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--color-text-complement);
+}
+
+::placeholder {
+  color: var(--color-text-complement);
+}
+
+h3,
+h2 {
+  margin: 0%;
+}
+
+body,
+input,
+button,
+textarea {
+  font: 400 18px "Poppins", sans-serif;
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+/*Global Attributes*/
+.document-container {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100vw;
+
+  display: flex;
+  position: absolute;
+}
+
+.header-container {
+  /*Sticky*/
+  top: 0;
+  position: fixed;
+
+  width: 100vw;
+  padding: 1rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: var(--color-primary-dark);
+  color: var(--color-white-background);
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+
+.header-logo {
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.header-container a {
+  text-decoration: none;
+  color: var(--color-box-base);
+  font-size: var(--text-big);
+}
+
+.header-container a:hover {
+  text-decoration: underline;
+}
+
+.header-container input {
+  padding-right: 1rem;
+  width: 20rem;
+
+  border-radius: 25px;
+  border-width: 0px;
+  padding: 0.3rem;
+
+  transition: border 0.2s !important;
+}
+
+.header-container input:focus {
+  border-bottom: 3px dashed var(--color-primary-medium);
+}
+
+.inventory-container {
+  cursor: pointer;
+
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 10rem;
+  font-size: var(--text-big);
+}
+
+.inventory-container img {
+  height: 2rem;
+}
+
+.inventory-container:hover {
+  text-decoration: underline;
+}
+
+.body-container {
+  width: 100vw;
+
+  padding: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: var(--color-primary-dark);
+  background-color: var(--color-background);
+}
+
+.all-cards-container {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.my-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  /* background-color: var(--color-primary-light); */
+}
+
+.footer-container {
+  /*fixed footer on bottom*/
+  bottom: 0;
+  position: absolute;
+  width: 100vw;
+  padding-left: 1rem;
+
+  background-color: var(--color-text-base);
+  color: var(--color-box-base);
+  font-weight: 500;
+}
+
+.error-message {
+  margin-top: 2rem;
+  height: 100vh;
+  font-size: var(--text-big);
+  color: red;
+}
