@@ -30,7 +30,6 @@
 import { ref, defineComponent, computed } from "vue";
 import Options from "@/components/OptionsApi.vue";
 import CompositionApi from "@/components/CompositionApi.vue";
-import "@/styles/global.css";
 
 import useAuth from "@/modules/auth";
 import useCards from "@/modules/cards";
