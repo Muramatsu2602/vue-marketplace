@@ -7,7 +7,7 @@ interface Card {
   price: number;
   attack: number;
   defence?: number; // talvez nao venha nada nesse
-  // defence: number | undefined; // old syntax
+  url: string;
 }
 
 interface State {
@@ -33,7 +33,7 @@ const actions = {
         attack: "100",
         defence: "40",
         price: 12.33,
-        url: "@/assets/cards/marieCurie.jpg"
+        url: "marieCurie.jpg"
       },
       {
         id: 2,
@@ -42,7 +42,7 @@ const actions = {
         attack: "78",
         defence: "99",
         price: 99.33,
-        url: "img/cards/albertEinstein.jpg"
+        url: "albertEinstein.jpg"
       },
       {
         id: 3,
@@ -51,7 +51,7 @@ const actions = {
         attack: "72",
         defence: "33",
         price: 34.33,
-        url: "img/cards/isaacNewton.jpg"
+        url: "isaacNewton.jpg"
       },
       {
         id: 4,
@@ -60,7 +60,7 @@ const actions = {
         attack: "98",
         defence: "23",
         price: 98.33,
-        url: "img/cards/nikolaTesla.jpeg"
+        url: "nikolaTesla.jpeg"
       },
       {
         id: 5,
@@ -69,7 +69,7 @@ const actions = {
         attack: "22",
         defence: "30",
         price: 119.33,
-        url: "img/cards/stephenHawking.jpg"
+        url: "stephenHawking.jpg"
       },
       {
         id: 6,
@@ -78,7 +78,7 @@ const actions = {
         attack: "98",
         defence: "23",
         price: 98.33,
-        url: "img/cards/galileoGalilei.jpg"
+        url: "galileoGalilei.jpg"
       },
       {
         id: 7,
@@ -87,7 +87,7 @@ const actions = {
         attack: "55",
         defence: "30",
         price: 98.33,
-        url: "img/cards/alanTuring.jpg"
+        url: "alanTuring.jpg"
       },
       {
         id: 8,
@@ -96,7 +96,7 @@ const actions = {
         attack: "87",
         defence: "21",
         price: 1987.33,
-        url: "img/cards/noamChomsky.jpg"
+        url: "noamChomsky.jpg"
       },
       {
         id: 9,
@@ -105,7 +105,7 @@ const actions = {
         attack: "100",
         defence: "18",
         price: 93.33,
-        url: "img/cards/richardFeynman.png"
+        url: "richardFeynman.png"
       },
       {
         id: 10,
@@ -114,7 +114,7 @@ const actions = {
         attack: "53",
         defence: "29",
         price: 10.0,
-        url: "img/cards/leonhardEuler.jpg"
+        url: "leonhardEuler.jpg"
       },
       {
         id: 11,
@@ -123,7 +123,7 @@ const actions = {
         attack: "74",
         defence: "123",
         price: 49.0,
-        url: "img/cards/maxPlank.jpg"
+        url: "maxPlank.jpg"
       },
       {
         id: 12,
@@ -132,7 +132,7 @@ const actions = {
         attack: "56",
         defence: "72",
         price: 23.0,
-        url: "img/cards/avicenna.jpg"
+        url: "avicenna.jpg"
       },
       {
         id: 13,
@@ -141,7 +141,7 @@ const actions = {
         attack: "12",
         defence: "92",
         price: 299.0,
-        url: "img/cards/avogadro.jpg"
+        url: "avogadro.jpg"
       },
       {
         id: 14,
@@ -150,7 +150,7 @@ const actions = {
         attack: "56",
         defence: "72",
         price: 23.0,
-        url: "img/cards/mendeleev.jpg"
+        url: "mendeleev.jpg"
       },
       {
         id: 15,
@@ -159,7 +159,7 @@ const actions = {
         attack: "12",
         defence: "2",
         price: 98.0,
-        url: "img/cards/pascal.jpg"
+        url: "pascal.jpg"
       },
       {
         id: 16,
@@ -168,7 +168,7 @@ const actions = {
         attack: "1000",
         defence: "12",
         price: 1234.0,
-        url: "img/cards/archimedes.jpg"
+        url: "archimedes.jpg"
       },
       {
         id: 17,
@@ -177,7 +177,7 @@ const actions = {
         attack: "23",
         defence: "373",
         price: 376.0,
-        url: "img/cards/ramanujan.jpg"
+        url: "ramanujan.jpg"
       },
       {
         id: 18,
@@ -186,7 +186,7 @@ const actions = {
         attack: "23",
         defence: "44",
         price: 56.0,
-        url: "img/cards/lavoisier.jpg"
+        url: "lavoisier.jpg"
       },
       {
         id: 19,
@@ -195,7 +195,7 @@ const actions = {
         attack: "34",
         defence: "78",
         price: 734.0,
-        url: "img/cards/ohm.jpg"
+        url: "ohm.jpg"
       },
       {
         id: 20,
@@ -204,7 +204,7 @@ const actions = {
         attack: "123",
         defence: "6",
         price: 12.0,
-        url: "img/cards/galvani.jpg"
+        url: "galvani.jpg"
       },
       {
         id: 21,
@@ -213,7 +213,7 @@ const actions = {
         attack: "231",
         defence: "5",
         price: 34.0,
-        url: "img/cards/bacon.jpg"
+        url: "bacon.jpg"
       }
     ];
 
@@ -248,7 +248,8 @@ const mutations = {
       name: card.name,
       price: card.price,
       attack: card.attack,
-      defence: card.defence
+      defence: card.defence,
+      url: card.url
     };
 
     if (idx === -1) {

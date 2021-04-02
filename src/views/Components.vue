@@ -1,28 +1,15 @@
 <template>
   <div v-if="!busy">
-    {{ busy }}
     <h1>{{ listOfCards.length }} Cientistas</h1>
 
-    <div v-if="listOfCards.length" class="cardContainer">
-      <!-- {{ listOfCards }} -->
+    <div v-if="listOfCards.length" class="card-container">
       <div v-for="card in listOfCards" :key="card.id" class="card">
         <p>ID: {{ card.id }}</p>
         {{ card.name }}
 
-        <img alt="Profile" :src="card.url" />
+        <img :src="require(`@/assets/cards/${card.url}`)" />
       </div>
     </div>
-
-    <h1 style="margin-top: 100px">Lesson 2: Yoyo's</h1>
-    <options />
-    <composition-api />
-
-    <h1>Lesson 3: Yoyo's</h1>
-    <div>Hello</div>
-    <div>Total: {{ total }}</div>
-
-    <options c="Componente options 1" :total="total" @inc="incHandler" />
-    <composition-api text="Componente Composition 1" @inc="incHandler" />
   </div>
 
   <div v-else>Loading your app...</div>
@@ -30,18 +17,11 @@
 
 <script lang='ts'>
 import { ref, defineComponent, computed } from "vue";
-import Options from "@/components/OptionsApi.vue";
-import CompositionApi from "@/components/CompositionApi.vue";
 
 import useAuth from "@/modules/auth";
 import useCards from "@/modules/cards";
 
 export default defineComponent({
-  components: {
-    Options,
-    CompositionApi,
-  },
-
   setup() {
     // const auth = useAuth();
     const cards = useCards();
@@ -101,7 +81,7 @@ export default defineComponent({
   border-color: var(--color-red);
 }
 
-.cardContainer {
+.card-container {
   border: 2px solid blue;
   border-radius: 25px;
   padding: 1rem;
@@ -109,5 +89,12 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.card-container img {
+  height: 300px;
+  width: 300px;
+  object-fit: fill;
+  border-radius: 8px;
 }
 </style>
