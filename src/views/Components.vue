@@ -49,13 +49,17 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+h1 {
+  text-align: center;
+}
+
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   width: 325px;
-  height: 400px;
+  height: 430px;
   margin: 1rem;
   border-radius: 8px;
 
@@ -79,7 +83,10 @@ export default defineComponent({
 }
 
 .card-header {
+  padding-top: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
+
   width: 100%;
   height: 3rem;
   background-color: var(--color-primary-light);
@@ -87,6 +94,7 @@ export default defineComponent({
 
 .card button {
   background-color: var(--color-primary-light);
+  padding: 0.5rem;
   margin: 0.5rem;
   border-radius: 10px;
   transition-duration: 0.4s;
@@ -102,7 +110,7 @@ export default defineComponent({
   border-radius: 25px;
   padding: 0.5rem;
   margin: 1rem;
-  
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
