@@ -33,7 +33,7 @@ const actions = {
         attack: "100",
         defence: "40",
         price: 12.33,
-        url: "img/cards/marieCurie.jpg"
+        url: "@/assets/cards/marieCurie.jpg"
       },
       {
         id: 2,

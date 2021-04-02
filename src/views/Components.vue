@@ -8,6 +8,8 @@
       <div v-for="card in listOfCards" :key="card.id" class="card">
         <p>ID: {{ card.id }}</p>
         {{ card.name }}
+
+        <img alt="Profile" :src="card.url" />
       </div>
     </div>
 
@@ -72,9 +74,8 @@ export default defineComponent({
   align-items: center;
 
   padding: 1rem;
-  width: 350px;
-  /* height: 450px; */
-  height: 300px;
+  width: 300px;
+  height: 450px;
   margin: 1rem;
   border-radius: 8px;
 
@@ -92,8 +93,12 @@ export default defineComponent({
 }
 
 .card p {
-  background-color: salmon;
+  /* background-color: salmon; */
   border-radius: 25px;
+}
+
+.card:hover {
+  border-color: var(--color-red);
 }
 
 .cardContainer {
