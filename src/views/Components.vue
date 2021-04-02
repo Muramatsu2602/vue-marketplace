@@ -4,10 +4,11 @@
 
     <div v-if="listOfCards.length" class="card-container">
       <div v-for="card in listOfCards" :key="card.id" class="card">
-        <p>ID: {{ card.id }}</p>
-        {{ card.name }}
+        <div class="card-header">ID: {{ card.id }} {{ card.name }}</div>
 
         <img :src="require(`@/assets/cards/${card.url}`)" />
+
+        <button>Buy Me</button>
       </div>
     </div>
   </div>
@@ -53,15 +54,16 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
 
-  padding: 1rem;
-  width: 300px;
-  height: 450px;
+  width: 325px;
+  height: 400px;
   margin: 1rem;
   border-radius: 8px;
 
+  justify-content: space-between;
+
   background-color: var(--color-white-background);
   color: var(--color-text-title);
-  border: 3px solid var(--color-primary-dark);
+  border: 3px solid var(--color-primary-medium);
   font-weight: 500;
 
   transition: border 0.2s !important;
@@ -72,23 +74,40 @@ export default defineComponent({
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-.card p {
-  /* background-color: salmon; */
-  border-radius: 25px;
-}
-
 .card:hover {
   border-color: var(--color-red);
 }
 
+.card-header {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  background-color: var(--color-primary-light);
+}
+
+.card button {
+  background-color: var(--color-primary-light);
+  margin: 0.5rem;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+.card button:hover {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
 .card-container {
-  border: 2px solid blue;
+  border: 2px solid var(--color-primary-light);
   border-radius: 25px;
-  padding: 1rem;
-  margin: 2rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+
+  justify-content: space-between;
 }
 
 .card-container img {
