@@ -9,16 +9,20 @@ This is the final project for the Vue.js Immersion course offered by Ingate Educ
 * CSS
 * HTML
 
-## 🎲 Proposta: Jogo de cartas tipo RPG 🏪
+## The Website 🏪
+This is a basic marketplace in Vue.js, which sells scientist-themed cards.
 
-Criar uma pagina onde poderemos:
-
-- Comprar cartas
-- Vender cartas
-- Visualizar deck com cartas
-- O obj da carta: id, name, life, attack, defence, price e img
-- Voce pode escolher as cartas que quiser na internet
-- Pode usar HTML, CSS e JavaScript, **sem** usar frameworks
+### Features
+- Buy cards
+- Sell cards
+- View cards in decks
+- Each card Contains:
+  * Id
+  * name
+  * attack
+  * defence
+  * price
+  * img  
 
 ## 🃏 Tema: Super Trunfo de Cientistas 👨‍🔬
 - O obj da carta: id, name, life, attack, defence, price e img
