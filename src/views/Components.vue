@@ -8,12 +8,12 @@
           <div class="card-header">{{ card.name }}</div>
 
           <img :src="require(`@/assets/cards/${card.url}`)" />
+          <div class="card-cost">R$ {{ card.price }}</div>
 
           <div class="card-properties">
             <div class="card-item">Health: {{ card.life }}</div>
             <div class="card-item">Attack: {{ card.attack }}</div>
             <div class="card-item">Defence: {{ card.defence }}</div>
-            <div class="card-item">Price: {{ card.price }}</div>
           </div>
 
           <button>Buy Me</button>
@@ -133,11 +133,12 @@ h1 {
   padding: 0.5rem;
   margin: 0.5rem;
   border-radius: 10px;
+  font-weight: bold;
   transition-duration: 0.4s;
 }
 
 .card button:hover {
-  background-color: #4caf50; /* Green */
+  background-color: var(--color-green); /* Green */
   color: white;
 }
 
@@ -152,6 +153,18 @@ h1 {
   align-items: center;
 
   justify-content: space-between;
+}
+
+.card-cost {
+  background-color: var(--color-red);
+  color: var(--color-box-footer);
+
+  margin-top: 0.3rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+
+  font-size: var(--text-medium);
+  font-weight: bold;
 }
 
 .card-container img {

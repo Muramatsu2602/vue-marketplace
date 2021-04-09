@@ -27,6 +27,8 @@
 
 <style lang='scss' scoped>
 .container {
+  /* border: 2px solid var(--color-primary-light);
+  border-radius: 25px; */
 
   padding: 0.5rem;
   margin: 2rem;
