@@ -4,6 +4,7 @@ import { reactive, readonly } from "vue";
 interface Card {
   id: number;
   name: string;
+  life: number;
   price: number;
   attack: number;
   defence?: number; // talvez nao venha nada nesse
@@ -246,6 +247,7 @@ const mutations = {
     const newCard: Card = {
       id: card.id,
       name: card.name,
+      life: card.life,
       price: card.price,
       attack: card.attack,
       defence: card.defence,

@@ -8,6 +8,13 @@
 
         <img :src="require(`@/assets/cards/${card.url}`)" />
 
+        <div class="card-properties">
+          <div class="card-item">Health: {{ card.life }}</div>
+          <div class="card-item">Attack: {{ card.attack }}</div>
+          <div class="card-item">Defence: {{ card.defence }}</div>
+          <div class="card-item">Price: {{ card.price }}</div>
+        </div>
+
         <button>Buy Me</button>
       </div>
     </div>
@@ -59,7 +66,6 @@ h1 {
   align-items: center;
 
   width: 325px;
-  height: 430px;
   margin: 1rem;
   border-radius: 8px;
 
@@ -84,12 +90,26 @@ h1 {
 
 .card-header {
   padding-top: 0.5rem;
-  margin-bottom: 1rem;
-  display: flex;
-
+  margin-bottom: 0.5rem;
+  height: 2rem;
   width: 100%;
-  height: 3rem;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: space-evenly;
+
   background-color: var(--color-primary-light);
+}
+
+.card-properties {
+  background-color: var(--color-input-background);
+  border: 2px solid var(--color-primary-light);
+
+  border-radius: 10px;
+  width: 90%;
+  display: flex;
+  margin: 0.3rem;
+  flex-direction: column;
 }
 
 .card button {
@@ -119,8 +139,8 @@ h1 {
 }
 
 .card-container img {
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   object-fit: fill;
   border-radius: 8px;
 }
