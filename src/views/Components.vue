@@ -1,26 +1,28 @@
 <template>
-  <div v-if="!busy">
-    <h1>{{ listOfCards.length }} Cientistas</h1>
+  <div class="container">
+    <div v-if="!busy">
+      <h1>{{ listOfCards.length }} Cientistas</h1>
 
-    <div v-if="listOfCards.length" class="card-container">
-      <div v-for="card in listOfCards" :key="card.id" class="card">
-        <div class="card-header">{{ card.name }}</div>
+      <div v-if="listOfCards.length" class="card-container">
+        <div v-for="card in listOfCards" :key="card.id" class="card">
+          <div class="card-header">{{ card.name }}</div>
 
-        <img :src="require(`@/assets/cards/${card.url}`)" />
+          <img :src="require(`@/assets/cards/${card.url}`)" />
 
-        <div class="card-properties">
-          <div class="card-item">Health: {{ card.life }}</div>
-          <div class="card-item">Attack: {{ card.attack }}</div>
-          <div class="card-item">Defence: {{ card.defence }}</div>
-          <div class="card-item">Price: {{ card.price }}</div>
+          <div class="card-properties">
+            <div class="card-item">Health: {{ card.life }}</div>
+            <div class="card-item">Attack: {{ card.attack }}</div>
+            <div class="card-item">Defence: {{ card.defence }}</div>
+            <div class="card-item">Price: {{ card.price }}</div>
+          </div>
+
+          <button>Buy Me</button>
         </div>
-
-        <button>Buy Me</button>
       </div>
     </div>
-  </div>
 
-  <div v-else>Loading your app...</div>
+    <div v-else class="loading">Loading your app...</div>
+  </div>
 </template>
 
 <script lang='ts'>
@@ -56,6 +58,16 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  font-size: var(--text-big);
+  align-self: center;
+  font-weight: bold;
+}
 h1 {
   text-align: center;
 }
@@ -67,7 +79,7 @@ h1 {
 
   width: 325px;
   margin: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
 
   justify-content: space-between;
 
@@ -89,6 +101,9 @@ h1 {
 }
 
 .card-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
   padding-top: 0.5rem;
   margin-bottom: 0.5rem;
   height: 2rem;
@@ -103,12 +118,13 @@ h1 {
 
 .card-properties {
   background-color: var(--color-input-background);
-  border: 2px solid var(--color-primary-light);
+  border-bottom: 2px solid var(--color-primary-light);
+  border-top: 2px solid var(--color-primary-light);
 
-  border-radius: 10px;
-  width: 90%;
+  width: 97%;
   display: flex;
-  margin: 0.3rem;
+  margin: 0.5rem;
+  padding: 0.3rem;
   flex-direction: column;
 }
 
@@ -143,5 +159,50 @@ h1 {
   width: 200px;
   object-fit: fill;
   border-radius: 8px;
+  border: 2px solid var(--color-primary-medium);
+  transition: border 0.2s !important;
+}
+
+.card-container img:hover {
+  border: 2px solid var(--color-red);
+
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 </style>

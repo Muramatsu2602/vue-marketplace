@@ -16,8 +16,8 @@
   padding: 0;
 }
 
-.container{
-  padding-top: 5rem;
+.container {
+  padding-top: 3rem;
 }
 
 #app {
