@@ -60,6 +60,7 @@
 }
 
 .about-image img {
-  height: 400px;
+  height: 500px;
+  clip-path: inset(20px round 20px);
 }
 </style>
