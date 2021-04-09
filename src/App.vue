@@ -31,7 +31,7 @@
 #nav {
   padding: 25px;
   height: 20px;
-  background-color: var(--color-primary-light);
+  background-color: var(--color-primary-medium);
 
   a {
     font-weight: bold;
@@ -41,7 +41,7 @@
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: var(--color-text-base);
+      color: var(--color-hover);
     }
   }
 }

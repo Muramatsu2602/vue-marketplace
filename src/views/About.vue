@@ -27,11 +27,9 @@
 
 <style lang='scss' scoped>
 .container {
-  /* border: 2px solid var(--color-primary-light);
-  border-radius: 25px; */
 
   padding: 0.5rem;
-  margin: 1rem;
+  margin: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -57,6 +55,9 @@
 
   font-size: var(--text-big);
   width: 40%;
+
+  text-align: justify;
+  vertical-align: middle;
 }
 
 .about-image img {
