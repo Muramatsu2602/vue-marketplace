@@ -4,7 +4,7 @@
 
     <div v-if="listOfCards.length" class="card-container">
       <div v-for="card in listOfCards" :key="card.id" class="card">
-        <div class="card-header">ID: {{ card.id }} {{ card.name }}</div>
+        <div class="card-header">{{ card.name }}</div>
 
         <img :src="require(`@/assets/cards/${card.url}`)" />
 
