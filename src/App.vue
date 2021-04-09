@@ -1,17 +1,23 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home </router-link>
-    <router-link to="/about">About </router-link>
-    <router-link to="/components">Components </router-link>
-  </div>
+  <div class="container">
+    <div id="nav" class="sticky">
+      <router-link to="/">Home </router-link>
+      <router-link to="/about">About </router-link>
+      <router-link to="/components">Components </router-link>
+    </div>
 
-  <router-view />
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
 * {
   margin: 0;
   padding: 0;
+}
+
+.container{
+  padding-top: 5rem;
 }
 
 #app {
@@ -23,8 +29,7 @@
 }
 
 #nav {
-  padding: 30px;
-
+  padding: 25px;
   height: 20px;
   background-color: var(--color-primary-light);
 
@@ -39,5 +44,11 @@
       color: var(--color-text-base);
     }
   }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 </style>
