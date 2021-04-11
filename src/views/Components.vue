@@ -135,6 +135,7 @@ h1 {
   border-radius: 10px;
   font-weight: bold;
   transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .card button:hover {

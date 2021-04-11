@@ -3,7 +3,7 @@
     <div id="nav" class="sticky">
       <router-link to="/">Home </router-link>
       <router-link to="/about">About </router-link>
-      <router-link to="/components">Components </router-link>
+      <router-link to="/components">Store </router-link>
     </div>
 
     <router-view />
