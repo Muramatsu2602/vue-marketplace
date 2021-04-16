@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <div class="header">
-      <h1>Home Page!</h1>
+      <h1>Login</h1>
     </div>
     <div class="main">
-      <img alt="Vue logo" src="../assets/logo.png" />
-      <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+     
     </div>
   </div>
 </template>

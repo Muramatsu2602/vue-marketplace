@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
-
-import Components from "../views/Components.vue";
+// views
+import Login from "../views/Login.vue";
+import Store from "../views/Store.vue";
 
 // routes
 // www.exemplo.com.br/users/edit --> procura e dps renderiza o componente
@@ -11,22 +11,31 @@ import Components from "../views/Components.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: {
+      headerShown: false
+    }
+  },
+  {
+    path: "/store",
+    name: "Store",
+    component: Store,
+    meta: {
+      headerShown: true
+    }
+  },
+  {
     path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/components",
-    name: "Components",
-    component: Components
-  },
-  {
-    path: "/about",
-    name: "About",
+    name: "Landing",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
+    component: () => import(/* webpackChunkName: "landing" */ "../views/Landing.vue"),
+    meta: {
+      headerShown: true
+    }
   }
 ];
 

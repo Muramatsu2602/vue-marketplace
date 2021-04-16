@@ -1,9 +1,9 @@
 <template>
-    <div id="nav" class="sticky">
-      <router-link to="/">Home </router-link>
-      <router-link to="/about">About </router-link>
-      <router-link to="/components">Store </router-link>
-    </div>
+  <div id="nav" class="sticky">
+    <router-link to="/">Home </router-link>
+    <router-link to="/store">Store </router-link>
+    <router-link to="/login">Login </router-link>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,8 +19,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
-
 #nav {
   padding: 25px;
   height: 20px;
@@ -37,6 +35,8 @@ export default defineComponent({
       color: var(--color-hover);
     }
   }
+
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .sticky {

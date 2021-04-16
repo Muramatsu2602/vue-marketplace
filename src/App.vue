@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <Header />
+    <div v-if="$route.meta.headerShown === true">
+      <Header />
+    </div>
     <router-view />
   </div>
 </template>
