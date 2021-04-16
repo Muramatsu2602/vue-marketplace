@@ -27,10 +27,6 @@ export default defineComponent({
   padding: 0;
 }
 
-.container {
-  padding-top: 3rem;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

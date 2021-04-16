@@ -59,6 +59,8 @@ export default defineComponent({
 
 <style lang='scss' scoped>
 .container {
+  margin-top: 5rem;
+
   display: flex;
   flex-direction: column;
 }
