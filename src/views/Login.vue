@@ -1,31 +1,33 @@
 <template>
   <div class="container">
-    <div class="login-form">
+    <div class="form-container">
       <div class="header">
         <h1>Login</h1>
       </div>
-      <div class="main">
-        <div class="form-field">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            class="hide-me input"
-            placeholder="Insert your username..."
-          />
-          <span class="border"></span>
-        </div>
-        <div class="form-field">
-          <label for="password">Password</label>
-          <input
-            type="Password"
-            name="password"
-            id="password"
-            class="hide-me input"
-            placeholder="Insert your password..."
-          />
-          <span class="border"></span>
+      <div class="login-form">
+        <div class="input-section">
+          <div class="form-field">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="hide-me input"
+              placeholder="Insert your username..."
+            />
+            <span class="border"></span>
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input
+              type="Password"
+              name="password"
+              id="password"
+              class="hide-me input"
+              placeholder="Insert your password..."
+            />
+            <span class="border"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +47,10 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+.header {
+  margin-top: 5rem !important;
+}
+
 .container {
   background-image: url("../assets/website/background.jpg");
   background-repeat: no-repeat;
@@ -56,7 +62,7 @@ export default defineComponent({
   width: 100vw;
 }
 
-.login-form {
+.form-container {
   display: flex;
   flex-direction: column;
 
@@ -64,7 +70,7 @@ export default defineComponent({
   justify-content: space-between;
 }
 
-.main {
+.login-form {
   height: 500px;
   width: 400px;
 
@@ -77,7 +83,7 @@ export default defineComponent({
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -87,8 +93,11 @@ export default defineComponent({
   /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
 }
 
-.header {
-  margin-top: 5rem !important;
+.input-section {
+  background-color: pink;
+  align-self: center;
+  margin-bottom: 30%;
+  width: 80%;
 }
 
 .form-field {
@@ -96,6 +105,11 @@ export default defineComponent({
   flex-direction: column;
   position: relative;
   margin: 0rem 1rem 1rem 0rem;
+}
+
+.form-field label {
+  font-size: var(--text-big);
+  font-weight: bold;
 }
 
 .form-field input {
@@ -120,7 +134,7 @@ export default defineComponent({
   left: 5px;
   width: 0;
   height: 2px;
-  background-color:  var(--color-primary-light);
+  background-color: var(--color-primary-light);
 }
 
 .input:focus ~ .border {
