@@ -5,6 +5,9 @@
         <h1>Login</h1>
       </div>
       <div class="login-form">
+        <div class="logo">
+          <img src="../assets/website/atom.svg" alt="" />
+        </div>
         <div class="input-section">
           <div class="form-field">
             <label for="username">Username</label>
@@ -71,7 +74,7 @@ export default defineComponent({
 }
 
 .login-form {
-  height: 500px;
+  height: 400px;
   width: 400px;
 
   border: 5px solid var(--color-primary-light);
@@ -83,7 +86,7 @@ export default defineComponent({
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -94,9 +97,8 @@ export default defineComponent({
 }
 
 .input-section {
-  background-color: pink;
   align-self: center;
-  margin-bottom: 30%;
+  margin-bottom: 20%;
   width: 80%;
 }
 
@@ -150,5 +152,17 @@ export default defineComponent({
   opacity: 0;
   transition: 0.7s ease-in-out;
   /*    color: transparent*/
+}
+.logo {
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;
 }
 </style>
