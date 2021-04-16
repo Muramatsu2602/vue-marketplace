@@ -29,9 +29,9 @@
 .container {
   /* border: 2px solid var(--color-primary-light);
   border-radius: 25px; */
+  margin: 4rem 2rem 2rem 2rem;
 
   padding: 0.5rem;
-  margin: 2rem;
 
   display: flex;
   flex-direction: column;

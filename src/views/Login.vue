@@ -32,19 +32,36 @@
             <span class="border"></span>
           </div>
         </div>
+
+        <div class="login-button">
+          <button>Login</button>
+        </div>
+
+        <div class="signup">
+          Don't have an account,
+          <router-link to="/signup">sign up here</router-link>!
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
-  name: "Home",
-  components: {
-    HelloWorld,
+  components: {},
+
+  setup() {
+    const state = reactive({
+      username: "",
+      password: "",
+    });
+
+    return {
+      // spread operator
+      ...toRefs(state),
+    };
   },
 });
 </script>
@@ -74,7 +91,6 @@ export default defineComponent({
 }
 
 .login-form {
-  height: 400px;
   width: 400px;
 
   border: 5px solid var(--color-primary-light);
@@ -82,7 +98,7 @@ export default defineComponent({
   border-radius: 25px;
 
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
 
   display: flex;
   flex-direction: column;
@@ -164,5 +180,50 @@ export default defineComponent({
 
 .logo img {
   height: 80px;
+}
+
+.login-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button button {
+  background-color: var(--color-primary-medium);
+  color: var(--color-box-base);
+
+  width: 8rem;
+  padding: 0.4rem;
+  border-radius: 10px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.login-button button:hover {
+  background-color: var(--color-primary-light);
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.signup {
+  width: 100%;
+  text-align: center;
+
+  font-size: var(--text-small);
+  color: var(--color-text-base);
+
+  margin-top: 0.3rem;
+}
+
+.signup a {
+  color: var(--color-primary-medium);
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
 }
 </style>
