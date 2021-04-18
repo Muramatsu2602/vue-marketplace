@@ -30,8 +30,8 @@
               id="password"
               class="hide-me input"
               placeholder="Insert your password..."
-              v-model="password"
-              @keyup="passwordHandler"
+              v-model="password1"
+              @keyup="passwordHandler($event, 1)"
             />
             <span class="border"></span>
           </div>
@@ -44,8 +44,9 @@
               id="confirmPassword"
               class="hide-me input"
               placeholder="Insert your password..."
-              v-model="confirmPassword"
-              @keyup="confirmPasswordHandler"
+              ref=""
+              v-model="password2"
+              @keyup="passwordHandler($event, 2)"
             />
             <span class="border"></span>
           </div>
@@ -72,33 +73,38 @@ export default defineComponent({
 
   setup() {
     const usernameEl = ref();
-    const passwordEl = ref();
+    const password1El = ref();
+    const password2El = ref();
 
     const state = reactive({
       username: "",
-      password: "",
+      password1: "",
+      password2: "",
     });
 
-    const login = () => {
-      console.log("vamos fazer o login", state.username, state.password);
+    const signup = () => {
+      console.log(
+        "vamos fazer o login",
+        state.username,
+        state.password1,
+        state.password2
+      );
     };
 
     const usernameHandler = (e: KeyboardEvent) => {
       // console.log(e)
       if (e.key === "Enter" && state.username) {
-        passwordEl.value.focus();
+        password1El.value.focus();
       }
     };
 
-    const passwordHandler = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && state.username && state.password) {
-        login();
-      }
-    };
-
-        const confirmPasswordHandler = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && state.username && state.password) {
-        login();
+    const passwordHandler = (e: KeyboardEvent, x: number) => {
+      if (e.key === "Enter" && state.username) {
+        if (x === 1) {
+          password2El.value.focus();
+        } else if (x === 2 && state.password1 && state.password2) {
+          signup();
+        }
       }
     };
 
@@ -109,7 +115,8 @@ export default defineComponent({
       usernameHandler,
       passwordHandler,
       usernameEl,
-      passwordEl,
+      password1El,
+      password2El,
     };
   },
 });
