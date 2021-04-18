@@ -22,6 +22,9 @@
             />
             <span class="border"></span>
           </div>
+          <span v-if="error.type === 'USERNAME'" class="signup-error"
+            >Error: {{ error.msg }}</span
+          >
           <div class="form-field">
             <label for="password">Password</label>
             <input
@@ -50,10 +53,13 @@
             />
             <span class="border"></span>
           </div>
+          <span v-if="error.type === 'PASSWORD'" class="signup-error"
+            >Error: {{ error.msg }}</span
+          >
         </div>
 
         <div class="signup-button">
-          <button @click="login">Create Account</button>
+          <button @click="signup">Create Account</button>
         </div>
 
         <div class="signup">
@@ -80,15 +86,35 @@ export default defineComponent({
       username: "",
       password1: "",
       password2: "",
+      error: {
+        type: "",
+        msg: "",
+      },
     });
 
     const signup = () => {
-      console.log(
-        "vamos fazer o login",
-        state.username,
-        state.password1,
-        state.password2
-      );
+      state.error.type = "";
+      state.error.msg = "";
+
+      if (!state.username) {
+        state.error.type = "USERNAME";
+        state.error.msg = "Please Enter your username";
+        return;
+      }
+
+      if (!state.password1) {
+        state.error.type = "PASSWORD";
+        state.error.msg = "Please Enter your password";
+        return;
+      }
+
+      if (state.password1 !== state.password2) {
+        state.error.type = "PASSWORD";
+        state.error.msg = "Password mismatch";
+        return;
+      }
+
+      console.log("Sign up, bora!");
     };
 
     const usernameHandler = (e: KeyboardEvent) => {
@@ -99,19 +125,21 @@ export default defineComponent({
     };
 
     const passwordHandler = (e: KeyboardEvent, x: number) => {
-      if (e.key === "Enter" && state.username) {
-        if (x === 1) {
-          password2El.value.focus();
-        } else if (x === 2 && state.password1 && state.password2) {
-          signup();
-        }
+      if (e.key !== "Enter" || !state.username) {
+        return;
+      }
+
+      if (x === 1) {
+        password2El.value.focus();
+      } else if (x === 2 && state.password1 && state.password2) {
+        signup();
       }
     };
 
     return {
       // spread operator
       ...toRefs(state),
-      login,
+      signup,
       usernameHandler,
       passwordHandler,
       usernameEl,
@@ -283,5 +311,9 @@ export default defineComponent({
 
 .signup a:hover {
   text-decoration: underline;
+}
+
+.signup-error {
+  color: red;
 }
 </style>
