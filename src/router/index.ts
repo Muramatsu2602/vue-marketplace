@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 // views
 import Login from "../views/Login.vue";
 import Store from "../views/Store.vue";
+import Signup from "../views/Signup.vue";
 
 // routes
 // www.exemplo.com.br/users/edit --> procura e dps renderiza o componente
@@ -24,6 +25,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Store,
     meta: {
       headerShown: true
+    }
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
+    meta: {
+      headerShown: false
     }
   },
   {

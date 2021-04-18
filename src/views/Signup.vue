@@ -2,13 +2,13 @@
   <div class="container">
     <div class="form-container">
       <div class="header">
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
       </div>
       <div class="login-form">
         <div class="logo">
-          <img src="../assets/website/atom.svg" alt="" />
+          <img src="../assets/website/addUser.svg" alt="" />
         </div>
-        <div class="input-section">
+        <div class="signup-section">
           <div class="form-field">
             <label for="username">Username</label>
             <input
@@ -35,15 +35,29 @@
             />
             <span class="border"></span>
           </div>
+
+          <div class="form-field">
+            <label for="password">Confirm Password</label>
+            <input
+              type="Password"
+              name="confirmPassword"
+              id="confirmPassword"
+              class="hide-me input"
+              placeholder="Insert your password..."
+              v-model="confirmPassword"
+              @keyup="confirmPasswordHandler"
+            />
+            <span class="border"></span>
+          </div>
         </div>
 
-        <div class="login-button">
-          <button @click="login">Login</button>
+        <div class="signup-button">
+          <button @click="login">Create Account</button>
         </div>
 
         <div class="signup">
-          Don't have an account,
-          <router-link to="/signup">sign up here</router-link>!
+          Already got an account?
+          <router-link to="/login">sign in here</router-link>!
         </div>
       </div>
     </div>
@@ -77,6 +91,12 @@ export default defineComponent({
     };
 
     const passwordHandler = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && state.username && state.password) {
+        login();
+      }
+    };
+
+        const confirmPasswordHandler = (e: KeyboardEvent) => {
       if (e.key === "Enter" && state.username && state.password) {
         login();
       }
@@ -141,9 +161,9 @@ export default defineComponent({
   /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
 }
 
-.input-section {
+.signup-section {
   align-self: center;
-  margin-bottom: 15%;
+  margin-bottom: 11%;
   width: 80%;
 }
 
@@ -211,19 +231,19 @@ export default defineComponent({
   height: 80px;
 }
 
-.login-button {
+.signup-button {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-button button {
+.signup-button button {
   background-color: var(--color-primary-medium);
   color: var(--color-box-base);
 
-  width: 8rem;
-  padding: 0.4rem;
+  width: 12rem;
+  padding: 0.5rem;
   border-radius: 10px;
   font-weight: bold;
 
@@ -232,7 +252,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.login-button button:hover {
+.signup-button button:hover {
   background-color: var(--color-primary-light);
 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
