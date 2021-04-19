@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="header-section">
-      <h1>About This Project</h1>
-      <p>not much to see here</p>
+      <h1>Welcome to SciDeck 2.0</h1>
+      <p>Where science meets card games</p>
     </div>
 
     <div class="body-section">
@@ -15,10 +15,7 @@
         delectus molestiae vel adipisci saepe.
       </div>
       <div class="about-image">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjJDx2mFjavi9x_SExUtpA88UFoCWCnLJgKV6aA6rcq2SqZLXAyue7Yrwo6uMrnafcXss&usqp=CAU"
-          alt="vue background"
-        />
+        <img src="../assets/website/scientists.jpg" alt="science Background" />
       </div>
     </div>
   </div>
@@ -41,6 +38,7 @@
 }
 
 .header-section {
+  margin-top: 2rem;
   margin-bottom: 5rem;
 }
 
@@ -61,6 +59,15 @@
   text-align: justify;
   vertical-align: middle;
 
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.about-image {
+  border: 5px solid var(--color-primary-light);
+  border-radius: 25px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
