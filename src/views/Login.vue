@@ -7,6 +7,7 @@
       <div class="login-form">
         <div class="logo">
           <img src="../assets/website/atom.svg" alt="" />
+          <h3>SciDeck 2.0</h3>
         </div>
         <div class="input-section">
           <div class="form-field">
@@ -199,12 +200,19 @@ export default defineComponent({
   /*    color: transparent*/
 }
 .logo {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   margin-top: 5%;
   margin-bottom: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.login h3 {
+  margin-top: 1rem;
 }
 
 .logo img {
