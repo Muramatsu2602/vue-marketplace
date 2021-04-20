@@ -76,6 +76,6 @@
 
 .about-image img {
   height: 500px;
-  clip-path: inset(20px round 20px);
+  clip-path: inset(0px round 20px);
 }
 </style>
