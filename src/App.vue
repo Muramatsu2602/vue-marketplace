@@ -11,11 +11,22 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import Header from "@/components/Header.vue";
+import useAuth from "./modules/auth";
 
 export default defineComponent({
   components: { Header },
 
   setup() {
+    const auth = useAuth();
+
+    console.log(auth);
+
+    if (auth.state.token) {
+      console.log("Esta logado");
+    } else {
+      console.log("Nao esta logado");
+    }
+
     return {};
   },
 });

@@ -8,12 +8,19 @@ interface State {
 
 const state: State = {
   id: "",
-  name: "nome",
-  token: "token"
+  name: "",
+  token: ""
+};
+
+const actions = {
+  login(username: string, password: string) {
+    console.log("sou action, vamos logar", username, password);
+  }
 };
 
 export default function useAuth() {
   return readonly({
-    state
+    state,
+    actions
   });
 }

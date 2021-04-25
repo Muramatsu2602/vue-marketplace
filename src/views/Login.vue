@@ -52,12 +52,14 @@
 </template>
 
 <script lang="ts">
+import useAuth from "@/modules/auth";
 import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
   components: {},
 
   setup() {
+    const auth = useAuth();
     const usernameEl = ref();
     const passwordEl = ref();
 
@@ -68,6 +70,14 @@ export default defineComponent({
 
     const login = () => {
       console.log("vamos fazer o login", state.username, state.password);
+
+      if (state.username && state.password) {
+        auth.actions.login(state.username, state.password);
+
+        if (state.username && state.password) {
+          auth.actions.login(state.username, state.password);
+        }
+      }
     };
 
     const usernameHandler = (e: KeyboardEvent) => {
