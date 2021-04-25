@@ -72,11 +72,11 @@ export default defineComponent({
       console.log("vamos fazer o login", state.username, state.password);
 
       if (state.username && state.password) {
-        auth.actions.login(state.username, state.password);
-
-        if (state.username && state.password) {
-          auth.actions.login(state.username, state.password);
-        }
+        const res = auth.actions
+          .login2(state.username, state.password)
+          .then((res) => {
+            console.log("res do login", res);
+          });
       }
     };
 
