@@ -66,6 +66,8 @@ const actions = {
     if (res.status === "OK") {
       mutations.login(res.result);
     }
+
+    return res;
   }
 };
 

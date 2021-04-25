@@ -109,7 +109,7 @@ export default defineComponent({
       },
     });
 
-    const signup = () => {
+    const signup = async () => {
       state.error.type = "";
       state.error.msg = "";
 
@@ -132,7 +132,17 @@ export default defineComponent({
       }
 
       console.log("Sign up, bora!");
-      auth.actions.signup(state.name, state.username, state.password1);
+      const res = await auth.actions.signup(
+        state.name,
+        state.username,
+        state.password1
+      );
+
+      if (res.status === "OK") {
+        console.log("ok");
+      } else {
+        // verifica se tem erro e mostra na tela
+      }
     };
 
     const nameHandler = (e: KeyboardEvent) => {
