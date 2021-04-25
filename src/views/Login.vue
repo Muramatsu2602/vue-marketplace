@@ -68,18 +68,16 @@ export default defineComponent({
       password: "",
     });
 
-    const login = () => {
+    const login = async () => {
       console.log("vamos fazer o login", state.username, state.password);
 
       if (state.username && state.password) {
-        const res = auth.actions
-          .login(state.username, state.password)
-          .then((res) => {
-            console.log("res do login", res);
-            if (res.status === "WRONG_USER") {
-              // seta um msg de erro
-            }
-          });
+        const res = await auth.actions.login(state.username, state.password);
+
+        console.log("res do login", res);
+        if (res.status === "WRONG_USER") {
+          // seta um msg de erro
+        }
       }
     };
 
