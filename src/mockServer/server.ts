@@ -7,8 +7,22 @@ const user = {
   token: ""
 };
 
-export const signup = async (name: string, username: string, password: string) => {
-  console.log("signup");
+export const Signup = async (name: string, username: string, password: string) => {
+  console.log("Signup");
+
+  user.name = name;
+  user.username = username;
+  user.password = password;
+
+  return {
+    status: "OK",
+    result: {
+      id: user.id,
+      name: user.name,
+      username: user.username,
+      token: "superUltraLongToken"
+    }
+  };
 };
 
 export const Login = async (username: string, password: string) => {

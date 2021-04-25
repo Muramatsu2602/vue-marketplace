@@ -1,4 +1,4 @@
-import { signup } from "./../mockServer/server";
+import { Signup } from "./../mockServer/server";
 import { Login } from "@/mockServer/server";
 import { readonly } from "vue";
 
@@ -60,6 +60,12 @@ const actions = {
 
   async signup(name: string, username: string, password: string) {
     console.log("action, vamos cadastrar", name, username, password);
+
+    const res = await Signup(name, username, password);
+
+    if (res.status === "OK") {
+      mutations.login(res.result);
+    }
   }
 };
 

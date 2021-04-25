@@ -92,7 +92,7 @@ export default defineComponent({
   components: {},
 
   setup() {
-    const auth = useAuth()
+    const auth = useAuth();
 
     const usernameEl = ref();
     const password1El = ref();
@@ -132,11 +132,10 @@ export default defineComponent({
       }
 
       console.log("Sign up, bora!");
-      auth.actions.signup(state.name, state.username, state.password1)
-
+      auth.actions.signup(state.name, state.username, state.password1);
     };
 
-     const nameHandler = (e: KeyboardEvent) => {
+    const nameHandler = (e: KeyboardEvent) => {
       // console.log(e)
       if (e.key === "Enter" && state.name) {
         usernameEl.value.focus();
