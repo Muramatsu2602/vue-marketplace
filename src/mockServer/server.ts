@@ -3,7 +3,8 @@ const user = {
   name: "fulano",
   username: "asd",
   password: "asd",
-  status: "OK"
+  status: "OK",
+  token: ""
 };
 
 export const Login = async (username: string, password: string) => {
