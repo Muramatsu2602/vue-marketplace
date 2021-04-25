@@ -10,6 +10,19 @@
         </div>
         <div class="signup-section">
           <div class="form-field">
+            <label for="username">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="hide-me input"
+              placeholder="Insert your name..."
+              v-model="name"
+              @keyup="nameHandler"
+            />
+            <span class="border"></span>
+          </div>
+          <div class="form-field">
             <label for="username">Username</label>
             <input
               type="text"
@@ -72,17 +85,21 @@
 </template>
 
 <script lang="ts">
+import useAuth from "@/modules/auth";
 import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
   components: {},
 
   setup() {
+    const auth = useAuth()
+
     const usernameEl = ref();
     const password1El = ref();
     const password2El = ref();
 
     const state = reactive({
+      name: "",
       username: "",
       password1: "",
       password2: "",
@@ -115,6 +132,15 @@ export default defineComponent({
       }
 
       console.log("Sign up, bora!");
+      auth.actions.signup(state.name, state.username, state.password1)
+
+    };
+
+     const nameHandler = (e: KeyboardEvent) => {
+      // console.log(e)
+      if (e.key === "Enter" && state.name) {
+        usernameEl.value.focus();
+      }
     };
 
     const usernameHandler = (e: KeyboardEvent) => {
@@ -140,6 +166,7 @@ export default defineComponent({
       // spread operator
       ...toRefs(state),
       signup,
+      nameHandler,
       usernameHandler,
       passwordHandler,
       usernameEl,

@@ -1,3 +1,4 @@
+import { signup } from "./../mockServer/server";
 import { Login } from "@/mockServer/server";
 import { readonly } from "vue";
 
@@ -33,7 +34,6 @@ const mutations = {
 //    1. Ok, faz a mutacao e coloca os dados do login no state
 //    2. WRONG_x, mostra que a msg de erro pro usuario
 
-
 const actions = {
   // ASIA'S PREFFERED
   async login(username: string, password: string) {
@@ -56,6 +56,10 @@ const actions = {
         resolve("hello");
       }, 3000);
     });
+  },
+
+  async signup(name: string, username: string, password: string) {
+    console.log("action, vamos cadastrar", name, username, password);
   }
 };
 

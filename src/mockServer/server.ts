@@ -7,6 +7,10 @@ const user = {
   token: ""
 };
 
+export const signup = async (name: string, username: string, password: string) => {
+  console.log("signup");
+};
+
 export const Login = async (username: string, password: string) => {
   if (username !== user.username) {
     return { status: "WRONG_USER" };
