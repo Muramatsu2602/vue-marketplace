@@ -8,9 +8,9 @@
       </span>
     </div>
     <div id="exit" v-if="isLoggedIn">
-      <router-link @click="logOutHandler"
-        >{{ username }}, Sign Out...
-      </router-link>
+      <span id="exit-text" @click="logOutHandler">
+        {{ username }}, Sign Out...</span
+      >
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default defineComponent({
 
     const logOutHandler = () => {
       auth.actions.logout();
-      router.push("/");
+      router.push("/login");
     };
 
     return { isLoggedIn, username, logOutHandler };
@@ -64,6 +64,22 @@ export default defineComponent({
 
 #exit {
   margin-right: 3rem;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+}
+
+#exit-text {
+  color: #2c3e50;
+  font-weight: 600;
+
+  transition: color 0.4s !important;
+}
+
+#exit-text:hover {
+  color: white;
+  cursor: pointer;
 }
 
 .sticky {
