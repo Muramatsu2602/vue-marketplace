@@ -1,8 +1,8 @@
 const user = {
   id: 1,
-  name: "fulano",
-  username: "asd",
-  password: "asd",
+  name: "kenzo",
+  username: "kenzo",
+  password: "123",
   status: "OK",
   token: ""
 };

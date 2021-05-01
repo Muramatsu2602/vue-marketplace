@@ -74,6 +74,8 @@ export default defineComponent({
       if (state.username && state.password) {
         const res = await auth.actions.login(state.username, state.password);
 
+        console.log("RESPOSTA", res);
+
         console.log("res do login", res);
         if (res.status === "WRONG_USER") {
           // seta um msg de erro

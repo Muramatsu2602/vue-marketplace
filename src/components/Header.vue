@@ -2,18 +2,25 @@
   <div id="nav" class="sticky">
     <router-link to="/">Home </router-link>
     <router-link to="/store">Store </router-link>
-    <router-link to="/login">Login </router-link>
+    <span v-if="!isLoggedIn">
+      <router-link to="/login">Login </router-link>
+    </span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import useAuth from "@/modules/auth";
+import { computed, defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
   components: {},
 
   setup() {
-    return {};
+    const auth = useAuth();
+
+    const isLoggedIn = computed(() => auth.state.token);
+
+    return { isLoggedIn };
   },
 });
 </script>
