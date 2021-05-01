@@ -37,6 +37,20 @@ const mutations = {
 //    2. WRONG_x, mostra que a msg de erro pro usuario
 
 const actions = {
+  loadUserData() {
+    const item = window.localStorage.getItem(STORAGE_KEY);
+
+    if (item) {
+      // put user's data into the right place
+      mutations.login(JSON.parse(item));
+    }
+  },
+
+  logout() {
+    window.localStorage.removeItem(STORAGE_KEY);
+    mutations.login({});
+  },
+
   // ASIA'S PREFFERED
   async login(username: string, password: string) {
     console.log("sou action, vamos logar", username, password);

@@ -8,7 +8,9 @@
       </span>
     </div>
     <div id="exit" v-if="isLoggedIn">
-      <router-link to="/login">{{ username }}, Sign Out... </router-link>
+      <router-link @click="logOutHandler"
+        >{{ username }}, Sign Out...
+      </router-link>
     </div>
   </div>
 </template>
@@ -16,6 +18,7 @@
 <script lang="ts">
 import useAuth from "@/modules/auth";
 import { computed, defineComponent } from "@vue/runtime-core";
+import router from "@/router/";
 
 export default defineComponent({
   components: {},
@@ -26,7 +29,12 @@ export default defineComponent({
     const isLoggedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);
 
-    return { isLoggedIn, username };
+    const logOutHandler = () => {
+      auth.actions.logout();
+      router.push("/");
+    };
+
+    return { isLoggedIn, username, logOutHandler };
   },
 });
 </script>
