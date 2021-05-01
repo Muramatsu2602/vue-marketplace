@@ -87,6 +87,7 @@
 <script lang="ts">
 import useAuth from "@/modules/auth";
 import { defineComponent, reactive, ref, toRefs } from "vue";
+import router from "@/router/";
 
 export default defineComponent({
   components: {},
@@ -139,7 +140,8 @@ export default defineComponent({
       );
 
       if (res.status === "OK") {
-        console.log("ok");
+        console.log("Let's go in!");
+        router.push("/");
       } else {
         // verifica se tem erro e mostra na tela
       }

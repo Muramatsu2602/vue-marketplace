@@ -1,20 +1,20 @@
 import { Signup } from "./../mockServer/server";
 import { Login } from "@/mockServer/server";
-import { readonly } from "vue";
+import { reactive, readonly } from "vue";
 
 interface State {
-  id: string;
+  id: number;
   name: string;
   username: string;
   token: string;
 }
 
-const state: State = {
-  id: "",
+const state: State = reactive({
+  id: 0,
   name: "",
   username: "",
   token: ""
-};
+});
 
 // poder de editar os states
 const mutations = {

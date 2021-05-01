@@ -54,6 +54,7 @@
 <script lang="ts">
 import useAuth from "@/modules/auth";
 import { defineComponent, reactive, ref, toRefs } from "vue";
+import router from "@/router/";
 
 export default defineComponent({
   components: {},
@@ -74,11 +75,11 @@ export default defineComponent({
       if (state.username && state.password) {
         const res = await auth.actions.login(state.username, state.password);
 
-        console.log("RESPOSTA", res);
-
-        console.log("res do login", res);
         if (res.status === "WRONG_USER") {
           // seta um msg de erro
+        } else if (res.status === "OK") {
+          console.log("Let's go in!");
+          router.push("/");
         }
       }
     };

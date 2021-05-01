@@ -1,10 +1,15 @@
 <template>
   <div id="nav" class="sticky">
-    <router-link to="/">Home </router-link>
-    <router-link to="/store">Store </router-link>
-    <span v-if="!isLoggedIn">
-      <router-link to="/login">Login </router-link>
-    </span>
+    <div>
+      <router-link to="/">Home </router-link>
+      <router-link to="/store">Store </router-link>
+      <span v-if="!isLoggedIn">
+        <router-link to="/login">Login </router-link>
+      </span>
+    </div>
+    <div id="exit" v-if="isLoggedIn">
+      <router-link to="/login">Sair </router-link>
+    </div>
   </div>
 </template>
 
@@ -27,6 +32,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #nav {
+  display: flex;
+  justify-content: space-between;
   padding: 25px;
   height: 20px;
   background-color: var(--color-primary-medium);
@@ -44,6 +51,10 @@ export default defineComponent({
   }
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+#exit {
+  margin-right: 3rem;
 }
 
 .sticky {
