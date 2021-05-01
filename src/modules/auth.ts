@@ -2,6 +2,8 @@ import { Signup } from "./../mockServer/server";
 import { Login } from "@/mockServer/server";
 import { reactive, readonly } from "vue";
 
+const STORAGE_KEY = "vue-marketplace";
+
 interface State {
   id: number;
   name: string;
@@ -43,6 +45,8 @@ const actions = {
 
     if (res.status === "OK") {
       mutations.login(res.result);
+
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(res.result));
     }
     return res;
   },
@@ -65,6 +69,9 @@ const actions = {
 
     if (res.status === "OK") {
       mutations.login(res.result);
+
+      // like a state, but not as visible as a common cookie
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(res.result));
     }
 
     return res;

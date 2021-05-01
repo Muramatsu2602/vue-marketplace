@@ -8,7 +8,7 @@
       </span>
     </div>
     <div id="exit" v-if="isLoggedIn">
-      <router-link to="/login">Sair </router-link>
+      <router-link to="/login">{{ username }}, Sign Out... </router-link>
     </div>
   </div>
 </template>
@@ -24,8 +24,9 @@ export default defineComponent({
     const auth = useAuth();
 
     const isLoggedIn = computed(() => auth.state.token);
+    const username = computed(() => auth.state.username);
 
-    return { isLoggedIn };
+    return { isLoggedIn, username };
   },
 });
 </script>
