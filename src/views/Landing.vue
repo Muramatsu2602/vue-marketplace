@@ -44,7 +44,8 @@
 
 .body-section {
   display: flex;
-
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
@@ -52,6 +53,8 @@
   border: 5px solid var(--color-primary-light);
   border-radius: 25px;
   padding: 1rem;
+
+  margin-bottom: 2rem;
 
   font-size: var(--text-big);
   width: 40%;
@@ -72,6 +75,7 @@
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
+  max-height: 500px;
 }
 
 .about-image img {
