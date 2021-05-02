@@ -1,11 +1,12 @@
 <template>
   <div id="nav" class="sticky">
-    <div>
-      <router-link to="/">Home </router-link>
-      <router-link to="/store">Store </router-link>
-      <span v-if="!isLoggedIn">
-        <router-link to="/login">Login </router-link>
-      </span>
+    <div class="menu-options-container">
+      <router-link to="/" class="menu-option">
+        <font-awesome-icon size="2x" icon="home" />Home
+      </router-link>
+      <router-link to="/store" class="menu-option">
+        <font-awesome-icon size="2x" icon="store" />Store
+      </router-link>
     </div>
     <div id="exit" v-if="isLoggedIn" class="dropdown">
       <div id="exitButton" class="dropbtn">
@@ -17,6 +18,11 @@
         <p @click="logOutHandler">Exit</p>
         <p @click="displayAlertHandler">About</p>
       </div>
+    </div>
+    <div id="login" v-else>
+      <router-link to="/login" class="menu-option">
+        <font-awesome-icon size="2x" icon="sign-in-alt" /> Login
+      </router-link>
     </div>
   </div>
 </template>
@@ -41,7 +47,7 @@ export default defineComponent({
     };
 
     const displayAlertHandler = () => {
-      alert("Hey there....");
+      alert("Hey there.... This is all thanks to Ingate Educa's platform...");
     };
 
     return { isLoggedIn, username, logOutHandler, displayAlertHandler };
@@ -53,8 +59,8 @@ export default defineComponent({
 #nav {
   display: flex;
   justify-content: space-between;
-  padding: 25px 25px 25px 25px;
-  height: 20px;
+  padding: 8px 25px 8px 25px;
+  /* height: 20px; */
   background-color: var(--color-primary-medium);
 
   a {
@@ -70,6 +76,28 @@ export default defineComponent({
   }
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.menu-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-options-container {
+  /* background-color: red; */
+  display: flex;
+  justify-content: left;
+  height: 3.8rem;
+  width: 15rem;
+}
+
+#login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 6.5rem;
 }
 
 #exit {
@@ -130,7 +158,7 @@ export default defineComponent({
 .dropdown-content {
   display: none;
   position: absolute;
-  margin-top: 5rem;
+  margin-top: 6.2rem;
   background-color: #f9f9f9;
 
   padding-left: 1rem;
@@ -149,7 +177,6 @@ export default defineComponent({
 /* Change color of dropdown links on hover */
 .dropdown-content p:hover {
   cursor: pointer;
-
   border-bottom: 2px solid var(--color-primary-medium);
 }
 
