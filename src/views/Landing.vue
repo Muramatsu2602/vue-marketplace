@@ -7,12 +7,16 @@
 
     <div class="body-section">
       <div class="about-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sint
-        odio iusto natus nulla exercitationem fugit facilis fuga dolores.
-        Repudiandae voluptas, alias pariatur mollitia fugiat deleniti iste nisi
-        ad qui, exercitationem sint consectetur tenetur tempora beatae obcaecati
-        saepe molestiae iusto officiis expedita. Cupiditate, culpa soluta
-        delectus molestiae vel adipisci saepe.
+        <h2 v-if="username">This is {{ name }}'s', aka {{ username }}.</h2>
+        <h2 v-else>There shall be profile section here</h2>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+          sint odio iusto natus nulla exercitationem fugit facilis fuga dolores.
+          Repudiandae voluptas, alias pariatur mollitia fugiat deleniti iste
+          nisi ad qui, exercitationem sint consectetur tenetur tempora beatae
+          obcaecati saepe molestiae iusto officiis expedita. Cupiditate, culpa
+          soluta delectus molestiae vel adipisci saepe.
+        </div>
       </div>
       <div class="about-image">
         <img src="../assets/website/scientists.jpg" alt="science Background" />
@@ -21,6 +25,52 @@
   </div>
 </template>
 
+<script lang="ts">
+import useAuth from "@/modules/auth";
+import { computed, defineComponent } from "@vue/runtime-core";
+import router from "@/router/";
+import useMe from "@/modules/me";
+
+export default defineComponent({
+  components: {},
+
+  setup() {
+    const auth = useAuth();
+    const me = useMe();
+
+    const isLoggedIn = computed(() => auth.state.token);
+    const balance = computed(() => me.state.balance);
+    const cartCount = computed(() => me.state.cart.length);
+
+    const username = computed(() => auth.state.username);
+    const name = computed(() => auth.state.name);
+
+    const logOutHandler = () => {
+      auth.actions.logout();
+      router.push("/login");
+    };
+
+    const displayAlertHandler = () => {
+      alert("Hey there.... This is all thanks to Ingate Educa's platform...");
+    };
+
+    const myCollectionHandler = () => {
+      router.push("/collection");
+    };
+
+    return {
+      isLoggedIn,
+      username,
+      logOutHandler,
+      displayAlertHandler,
+      myCollectionHandler,
+      balance,
+      name,
+      cartCount,
+    };
+  },
+});
+</script>
 
 <style lang='scss' scoped>
 .container {

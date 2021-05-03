@@ -181,6 +181,7 @@ export default defineComponent({
 
 #wallet span {
   margin-right: 0.5rem;
+  /* z-index: -1 !important; */
 }
 
 #walletButton {

@@ -74,49 +74,50 @@ const actions = {
     return false;
   },
 
-  async buy() {
-    const body = {
-      cards: state.cart.map(card => ({
-        id: card.id,
-        price: card.price
-      }))
-    };
-
-    const res = await buy(body);
-    if (res.status === "OK") {
-      // TODO: Aqui foi a chamada pro servidor e voltou ok
-
-      body.cards.forEach(card => {
-        const cardIdx = state.cart.findIndex(c => c.id === card.id);
-
-        console.log("Hi there", card.id, state.cart[cardIdx]);
-
-        state.list.push(state.cart[cardIdx]); // adding card to user's list
-        state.cart.splice(cardIdx, 1); // removing cards from checkout
-      });
-      mutations.setBalance(res.result.balance);
-    }
-
-    return res.status;
-  },
-
+  // TODO: this crashes as soon as checkout button is activated
   // async buy() {
   //   const body = {
-  //     cards: state.cart.map(card => card.id) // IDs array
+  //     cards: state.cart.map(card => ({
+  //       id: card.id,
+  //       price: card.price
+  //     }))
   //   };
 
-  //   // TODO: Aqui foi a chamada pro servidor e voltou ok
+  //   const res = await buy(body);
+  //   if (res.status === "OK") {
+  //     // TODO: Aqui foi a chamada pro servidor e voltou ok
 
-  //   body.cards.forEach(cardId => {
-  //     const cardIdx = state.cart.findIndex(c => c.id === cardId);
-  //     console.log(cardId, state.cart[cardIdx]);
+  //     body.cards.forEach(card => {
+  //       const cardIdx = state.cart.findIndex(c => c.id === card.id);
 
-  //     state.list.push(state.cart[cardIdx]); // adding card to user's list
-  //     state.cart.splice(cardIdx, 1); // removing cards from checkout
-  //   });
+  //       console.log("Hi there", card.id, state.cart[cardIdx]);
 
-  //   return "OK";
+  //       state.list.push(state.cart[cardIdx]); // adding card to user's list
+  //       state.cart.splice(cardIdx, 1); // removing cards from checkout
+  //     });
+  //     mutations.setBalance(res.result.balance);
+  //   }
+
+  //   return res.status;
   // },
+
+  async buy() {
+    const body = {
+      cards: state.cart.map(card => card.id) // IDs array
+    };
+
+    // TODO: Aqui foi a chamada pro servidor e voltou ok
+
+    body.cards.forEach(cardId => {
+      const cardIdx = state.cart.findIndex(c => c.id === cardId);
+      console.log(cardId, state.cart[cardIdx]);
+
+      state.list.push(state.cart[cardIdx]); // adding card to user's list
+      state.cart.splice(cardIdx, 1); // removing cards from checkout
+    });
+
+    return "OK";
+  },
 
   async sell(card: Card) {
     const body = {

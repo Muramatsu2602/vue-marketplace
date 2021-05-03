@@ -5,7 +5,7 @@ const user: { [key: string]: any } = {
   password: "123",
   status: "OK",
   token: "",
-  balance: 0,
+  balance: 200,
   cards: []
 };
 
@@ -24,7 +24,7 @@ export const Signup = async (name: string, username: string, password: string) =
   user.username = username;
   user.password = password;
   user.token = "superUltraLongToken";
-  user.balance = Math.floor(Math.random() * 1000);
+  user.balance = Math.floor(Math.random() * 1001);
 
   window.localStorage.setItem("tmp_marketplace_vue33", JSON.stringify(user));
 
@@ -89,7 +89,6 @@ export const sell = async (body: any) => {
   const idx = user.cards.findIndex((x: any) => x.id === body.card_id);
 
   user.cards.splice(idx, 1);
-
   window.localStorage.setItem("tmp_marketplace_vue33", JSON.stringify(user));
 
   return {
