@@ -5,66 +5,47 @@
       <p>You gotta catch them all!</p>
     </div>
 
-    <div class="card-container" v-if="cart.length">
-      <div v-for="card in cart" :key="card.id">
-        <card-component :card="card" isCart @on-remove="removeHandler(card)" />
+    <div class="card-container" v-if="myList.length">
+      <div v-for="card in myList" :key="card.id">
+        <card-component :card="card" @on-buy="sellHandler" />
       </div>
     </div>
-    <div v-else class="empty-cart">
+    <div v-else class="empty-collection">
       <font-awesome-icon size="2x" icon="gem" />
       <h3>Your Collection is empty. For now...</h3>
     </div>
   </div>
-  <div v-if="cart.length" class="summary-container">
+  <div v-if="myList.length" class="summary-container">
     <div class="summary">
-      <div class="summary-item">
-        Total Items: <strong>{{ cart.length }}</strong>
-      </div>
-      <div class="summary-item">
-        Total Value: <strong> {{ total }}</strong>
-      </div>
-      <div>
-        <btn @click="buyHandler"
-          >Checkout <font-awesome-icon size="1x" icon="dollar-sign" />
-        </btn>
-      </div>
+      Options?
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { useRouter } from "vue-router";
-import CardComponent from "@/components/molecules/Card.vue";
-import Btn from "@/components/atoms/Btn.vue";
-import { Card } from "@/modules/cards";
-import useMe from "@/modules/me";
 import { computed, defineComponent } from "@vue/runtime-core";
+import useCards, { Card } from "@/modules/cards";
+import Btn from "@/components/atoms/Btn.vue";
+import useMe from "@/modules/me";
+import CardComponent from "@/components/molecules/Card.vue";
+import { ref } from "vue";
 
 export default defineComponent({
-  components: { CardComponent, Btn },
+  components: { Btn, CardComponent },
   setup() {
-    const router = useRouter();
+    const cards = useCards();
     const me = useMe();
+    const total = ref(0);
 
-    const cart = computed(() => me.state.cart);
-    const total = computed(() =>
-      me.state.cart.map((x) => x.price).reduce((a, b) => a + b, 0)
-    );
+    // Computed Functions
+    const myList = me.getters.sortedList();
 
-    const removeHandler = (card: Card) => {
-      me.mutations.removeCardFromCart(card.id);
-    };
+    const busy = computed(() => cards.state.busy);
 
-    const buyHandler = () => {
-      me.actions.buy().then((res) => {
-        // console.log("RES;", res);
-        if (res === "OK") {
-          router.push({ name: "Landing" });
-        }
-      });
-    };
+    cards.actions.loadCards();
 
-    return { cart, removeHandler, total, buyHandler };
+    return { total, myList, busy, };
   },
 });
 </script>
@@ -104,7 +85,7 @@ h1 {
   max-height: 60vh;
   overflow-y: auto;
 }
-.empty-cart {
+.empty-collection {
   display: flex;
   flex-direction: column;
   align-items: center;

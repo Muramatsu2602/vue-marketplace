@@ -1,6 +1,6 @@
 import { getMe } from "@/mockServer/server";
 import { faBuyNLarge } from "@fortawesome/free-brands-svg-icons";
-import { reactive, readonly } from "vue";
+import { computed, reactive, readonly } from "vue";
 import { Card } from "./cards";
 
 export interface State {
@@ -69,11 +69,19 @@ const actions = {
   }
 };
 
+// ---------------------- Getter ----------------------
+const getters = {
+  sortedList() {
+    return computed(() => state.list.sort((a, b) => a.id - b.id));
+  }
+};
+
 // ---------------------- Export ----------------------
 export default function useMe() {
   return readonly({
     state,
     mutations,
-    actions
+    actions,
+    getters
   });
 }

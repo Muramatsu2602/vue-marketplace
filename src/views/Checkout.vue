@@ -5,18 +5,24 @@
       <p>Make sure you got everything!</p>
     </div>
 
-    <div class="card-container" v-if="cart.length">
+    <div class="card-container">
       <div v-for="card in cart" :key="card.id">
         <card-component :card="card" isCart @on-remove="removeHandler(card)" />
       </div>
     </div>
-    <div v-else class="empty-cart">
-      <font-awesome-icon size="2x" icon="frown" />
-      <h3>Your Cart is empty. For now...</h3>
-    </div>
   </div>
-  <div v-if="cart.length" class="summary-container">
-    Hey there
+  <div class="summary-container">
+    <div class="summary">
+      <div class="summary-item">
+        Total Items: <strong>{{ cart.length }}</strong>
+      </div>
+      <div class="summary-item">
+        Total Value: <strong> {{ total }}</strong>
+      </div>
+      <div>
+        <btn @click="buyHandler">Checkout <font-awesome-icon size="1x" icon="dollar-sign" /> </btn>
+      </div>
+    </div>
   </div>
 </template>
 
