@@ -1,4 +1,5 @@
 import { getMe } from "@/mockServer/server";
+import { faBuyNLarge } from "@fortawesome/free-brands-svg-icons";
 import { reactive, readonly } from "vue";
 import { Card } from "./cards";
 
@@ -47,6 +48,24 @@ const actions = {
     }
 
     return false;
+  },
+
+  async buy() {
+    const body = {
+      cards: state.cart.map(card => card.id) // IDs array
+    };
+
+    // TODO: Aqui foi a chamada pro servidor e voltou ok
+
+    body.cards.forEach(cardId => {
+      const cardIdx = state.cart.findIndex(c => c.id === cardId);
+      console.log(cardId, state.cart[cardIdx]);
+
+      state.list.push(state.cart[cardIdx]); // adding card to user's list
+      state.cart.splice(cardIdx, 1); // removing cards from checkout
+    });
+
+    return "OK";
   }
 };
 

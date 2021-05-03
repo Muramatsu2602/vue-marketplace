@@ -7,7 +7,11 @@
       <router-link to="/store" class="menu-option">
         <font-awesome-icon size="2x" icon="store" />Store
       </router-link>
-      <router-link v-if="isLoggedIn" :to="{ name: 'Checkout' }" class="menu-option">
+      <router-link
+        v-if="isLoggedIn"
+        :to="{ name: 'Checkout' }"
+        class="menu-option"
+      >
         <font-awesome-icon size="2x" icon="shopping-cart" />Cart ({{
           cartCount
         }})
@@ -26,8 +30,9 @@
       </div>
 
       <div class="dropdown-content">
+        <p @click="myCollectionHandler">My Collection</p>
+        <!-- <p @click="displayAlertHandler">About</p> -->
         <p @click="logOutHandler">Exit</p>
-        <p @click="displayAlertHandler">About</p>
       </div>
     </div>
     <div id="login" v-else>
@@ -65,11 +70,16 @@ export default defineComponent({
       alert("Hey there.... This is all thanks to Ingate Educa's platform...");
     };
 
+    const myCollectionHandler = () => {
+      router.push("/collection");
+    };
+
     return {
       isLoggedIn,
       username,
       logOutHandler,
       displayAlertHandler,
+      myCollectionHandler,
       balance,
       cartCount,
     };

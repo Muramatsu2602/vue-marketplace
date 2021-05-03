@@ -4,6 +4,7 @@ import Login from "../views/Login.vue";
 import Store from "../views/Store.vue";
 import Signup from "../views/Signup.vue";
 import Checkout from "../views/Checkout.vue";
+import Collection from "../views/Collection.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +19,14 @@ const routes: Array<RouteRecordRaw> = [
     path: "/store",
     name: "Store",
     component: Store,
+    meta: {
+      headerShown: true
+    }
+  },
+  {
+    path: "/collection",
+    name: "Collection",
+    component: Collection,
     meta: {
       headerShown: true
     }
