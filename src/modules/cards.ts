@@ -1,7 +1,7 @@
 import { reactive, readonly } from "vue";
 
 // ---------------------- Interface ------------------
-interface Card {
+export interface Card {
   id: number;
   name: string;
   life: number;
@@ -223,7 +223,6 @@ const actions = {
     setTimeout(() => {
       // API CALLS GOES HERE
 
-      console.log("depois de 0.5s");
       mockData.forEach(card => {
         // console.log(card);
         mutations.processCard(card);
@@ -234,7 +233,7 @@ const actions = {
   },
 
   async loadMore() {
-    
+
   }
 };
 //-----------------Mutations--------------------------//
@@ -246,7 +245,6 @@ const mutations = {
   processCard(card: any) {
     // verifying if it exists
     const idx = state.list.findIndex(x => x.id === card.id);
-    console.log("process", card);
 
     const newCard: Card = {
       id: card.id,

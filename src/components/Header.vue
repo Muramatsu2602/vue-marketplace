@@ -8,6 +8,12 @@
         <font-awesome-icon size="2x" icon="store" />Store
       </router-link>
     </div>
+    <div id="wallet" v-if="isLoggedIn" class="dropdown">
+      <div id="walletButton" class="dropbtn">
+        <span> ${{ balance }}</span>
+        <font-awesome-icon size="2x" icon="wallet" />
+      </div>
+    </div>
     <div id="exit" v-if="isLoggedIn" class="dropdown">
       <div id="exitButton" class="dropbtn">
         <span> {{ username }}</span>
@@ -31,15 +37,18 @@
 import useAuth from "@/modules/auth";
 import { computed, defineComponent } from "@vue/runtime-core";
 import router from "@/router/";
+import useMe from "@/modules/me";
 
 export default defineComponent({
   components: {},
 
   setup() {
     const auth = useAuth();
+    const me = useMe();
 
     const isLoggedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);
+    const balance = computed(() => me.state.balance);
 
     const logOutHandler = () => {
       auth.actions.logout();
@@ -50,7 +59,13 @@ export default defineComponent({
       alert("Hey there.... This is all thanks to Ingate Educa's platform...");
     };
 
-    return { isLoggedIn, username, logOutHandler, displayAlertHandler };
+    return {
+      isLoggedIn,
+      username,
+      logOutHandler,
+      displayAlertHandler,
+      balance,
+    };
   },
 });
 </script>
@@ -60,7 +75,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   padding: 10px 25px 10px 25px;
-  z-index:10;
+  z-index: 10;
 
   background-color: var(--color-primary-medium);
 
@@ -115,6 +130,30 @@ export default defineComponent({
 }
 
 #exitButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 10px;
+
+  width: 100%;
+}
+
+#wallet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 8rem;
+  margin-right: 2rem;
+
+  color: #2c3e50 !important;
+  font-weight: 600;
+}
+
+#walletButton {
   display: flex;
   flex-direction: row;
   align-items: center;

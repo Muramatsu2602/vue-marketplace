@@ -16,7 +16,7 @@
             <div class="card-item">Defence: {{ card.defence }}</div>
           </div>
 
-          <button>Buy Me</button>
+          <button @click="buyHandler(card.id)">Buy Me</button>
         </div>
       </div>
 
@@ -35,18 +35,17 @@
 <script lang='ts'>
 import { ref, defineComponent, computed } from "vue";
 
-import useAuth from "@/modules/auth";
 import useCards from "@/modules/cards";
 import Btn from "@/components/atoms/Btn.vue";
 
 export default defineComponent({
   components: { Btn },
   setup() {
-    // const auth = useAuth();
     const cards = useCards();
+
     const total = ref(0);
 
-    console.log("Components.cards", cards);
+    // console.log("Components.cards", cards);
 
     // Computed Functions
     const listOfCards = computed(() => {
@@ -55,10 +54,17 @@ export default defineComponent({
     const busy = computed(() => cards.state.busy);
 
     //functions
-    const loadMoreHandler = () => {};
+    const loadMoreHandler = () => {
+      // cards.actions.loadMore();
+    };
+
+    const buyHandler = (id: number) => {
+      console.log("ID: ", id);
+    };
+
     cards.actions.loadCards();
 
-    return { total, listOfCards, busy, loadMoreHandler };
+    return { total, listOfCards, busy, loadMoreHandler, buyHandler };
   },
 });
 </script>
@@ -170,9 +176,6 @@ h1 {
 
   /* max-height: 70vh;
   overflow-y: auto; */
-
-  max-height: 80vh;
-  overflow-y: auto;
 }
 
 .card-cost {
