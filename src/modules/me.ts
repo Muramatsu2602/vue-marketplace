@@ -1,7 +1,10 @@
-import { getMe } from "@/mockServer/server";
-import { faBuyNLarge } from "@fortawesome/free-brands-svg-icons";
+import { getMe, sell } from "@/mockServer/server";
+import { buy } from "@/mockServer/server";
+
 import { computed, reactive, readonly } from "vue";
-import { Card } from "./cards";
+import useCards, { Card } from "./cards";
+
+const cards = useCards();
 
 export interface State {
   list: Card[];
@@ -21,6 +24,25 @@ const state: State = reactive({
 const mutations = {
   setBalance(newBalance: number) {
     state.balance = newBalance;
+  },
+
+  async setUserCards(newCards: any) {
+    for (let i = 0; i < newCards.length; i++) {
+      const _card = newCards[i];
+
+      // searches for card in State
+      let card = cards.state.list.find(x => x.id === _card.id);
+      if (!card) {
+        // if not found, search for cards in API (not my case)
+        await cards.actions.loadCards();
+        card = cards.state.list.find(x => x.id === _card.id);
+      }
+
+      state.list.push({
+        ...card,
+        price: _card.price
+      } as Card);
+    }
   },
 
   addCardtoCart(card: Card) {
@@ -44,6 +66,8 @@ const actions = {
 
     if (res.status === "OK") {
       mutations.setBalance(res.result.balance);
+      // mutations.setUserCards(res.result.cards);
+
       return true;
     }
 
@@ -52,20 +76,27 @@ const actions = {
 
   async buy() {
     const body = {
-      cards: state.cart.map(card => card.id) // IDs array
+      cards: state.cart.map(card => ({
+        id: card.id,
+        price: card.price
+      }))
     };
 
-    // TODO: Aqui foi a chamada pro servidor e voltou ok
+    const res = await buy(body);
+    if (res.status === "OK") {
+      // TODO: Aqui foi a chamada pro servidor e voltou ok
 
-    body.cards.forEach(cardId => {
-      const cardIdx = state.cart.findIndex(c => c.id === cardId);
-      console.log(cardId, state.cart[cardIdx]);
+      body.cards.forEach(card => {
+        const cardIdx = state.cart.findIndex(c => c.id === card.id);
+        console.log(card.id, state.cart[cardIdx]);
 
-      state.list.push(state.cart[cardIdx]); // adding card to user's list
-      state.cart.splice(cardIdx, 1); // removing cards from checkout
-    });
+        state.list.push(state.cart[cardIdx]); // adding card to user's list
+        state.cart.splice(cardIdx, 1); // removing cards from checkout
+      });
+      mutations.setBalance(res.result.balance);
+    }
 
-    return "OK";
+    return res.status;
   },
 
   async sell(card: Card) {
@@ -73,12 +104,13 @@ const actions = {
       card_id: card.id
     };
 
-    // TODO: Aqui foi a chamada pro servidor e voltou ok
+    const res = await sell(body);
+    if (res.status === "OK") {
+      const cardIdx = state.list.findIndex(c => c.id === card.id);
 
-    const cardIdx = state.list.findIndex(c => c.id === card.id);
-    state.list.splice(cardIdx, 1);
-
-    
+      state.list.splice(cardIdx, 1);
+      mutations.setBalance(res.result.balance);
+    }
   }
 };
 

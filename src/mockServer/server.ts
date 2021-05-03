@@ -5,10 +5,11 @@ const user: { [key: string]: any } = {
   password: "123",
   status: "OK",
   token: "",
-  balance: 0
+  balance: 0,
+  cards: []
 };
 
-const data = window.localStorage.getItem("tmp_marketplace_vue31");
+const data = window.localStorage.getItem("tmp_marketplace_vue3");
 if (data) {
   const parsedData = JSON.parse(data);
 
@@ -25,7 +26,7 @@ export const Signup = async (name: string, username: string, password: string) =
   user.token = "superUltraLongToken";
   user.balance = Math.floor(Math.random() * 1000);
 
-  window.localStorage.setItem("tmp_marketplace_vue31", JSON.stringify(user));
+  window.localStorage.setItem("tmp_marketplace_vue33", JSON.stringify(user));
 
   return {
     status: "OK",
@@ -63,6 +64,38 @@ export const getMe = async () => ({
     id: user.id,
     name: user.name,
     username: user.username,
-    balance: user.balance
+    balance: user.balance,
+    cards: user.cards
   }
 });
+
+export const buy = async (body: any) => {
+  body.cards.forEach((card: any) => {
+    user.cards.push(card);
+    user.balance -= card.price;
+  });
+
+  window.localStorage.setItem("tmp_marketplace_vue33", JSON.stringify(user));
+
+  return {
+    status: "OK",
+    result: {
+      balance: user.balance
+    }
+  };
+};
+
+export const sell = async (body: any) => {
+  const idx = user.cards.findIndex((x: any) => x.id === body.card_id);
+
+  user.cards.splice(idx, 1);
+
+  window.localStorage.setItem("tmp_marketplace_vue33", JSON.stringify(user));
+
+  return {
+    status: "OK",
+    result: {
+      balance: user.balance
+    }
+  };
+};

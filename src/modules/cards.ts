@@ -272,6 +272,8 @@ const mutations = {
 export default function useCards() {
   return readonly({
     state,
-    actions
+    actions,
+    mutations,
+    // getters
   });
 }
