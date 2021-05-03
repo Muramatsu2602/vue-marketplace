@@ -23,6 +23,3 @@ This is a basic marketplace in Vue.js, which sells scientist-themed cards.
   * defence
   * price
   * img  
-
-## 🃏 Tema: Super Trunfo de Cientistas 👨‍🔬
-- O obj da carta: id, name, life, attack, defence, price e img
