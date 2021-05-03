@@ -11,26 +11,43 @@
       </div>
     </div>
   </div>
+  <div class="summary-container">
+    <div class="summary">
+      <div class="summary-item">
+        Total Items: <strong>{{ cart.length }}</strong>
+      </div>
+      <div class="summary-item">
+        Total Value: <strong> {{ total }}</strong>
+      </div>
+      <div>
+        <btn>Checkout!</btn>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import CardComponent from "@/components/molecules/Card.vue";
+import Btn from "@/components/atoms/Btn.vue";
 import { Card } from "@/modules/cards";
 import useMe from "@/modules/me";
 import { computed, defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
-  components: { CardComponent },
+  components: { CardComponent, Btn },
   setup() {
     const me = useMe();
 
     const cart = computed(() => me.state.cart);
+    const total = computed(() =>
+      me.state.cart.map((x) => x.price).reduce((a, b) => a + b, 0)
+    );
 
     const removeHandler = (card: Card) => {
-      
+      me.mutations.removeCardFromCart(card.id);
     };
 
-    return { cart, removeHandler };
+    return { cart, removeHandler, total };
   },
 });
 </script>
@@ -67,7 +84,32 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
 
-  /* max-height: 70vh;
-  overflow-y: auto; */
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.summary-container {
+  display: flex;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-around;
+
+  border: 3px solid var(--color-primary-light);
+  border-radius: 25px;
+  background-color: white;
+
+  width: 40%;
+  margin: 1rem;
+
+  align-self: center;
+}
+
+.summary-item {
+  align-self: center;
 }
 </style>

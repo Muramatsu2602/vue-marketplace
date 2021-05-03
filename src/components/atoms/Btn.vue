@@ -31,6 +31,8 @@ export default defineComponent({
   font-weight: bold;
   transition-duration: 0.4s;
   cursor: pointer;
+
+  text-align: center;
 }
 
 .btn:hover {
