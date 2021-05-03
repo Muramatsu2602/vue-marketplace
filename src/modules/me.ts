@@ -1,3 +1,4 @@
+import { getMe } from "@/mockServer/server";
 import { reactive, readonly } from "vue";
 import { Card } from "./cards";
 
@@ -7,15 +8,42 @@ export interface State {
   balance: number;
 }
 
+// ---------------------- State ----------------------
+
 const state: State = reactive({
   list: [],
   checkout: [],
-  //   balance: Math.random() * 100
-  balance: Math.floor(Math.random() * 1000)
+  balance: 0
 });
 
+// ---------------------- Mutations -------------------
+const mutations = {
+  setBalance(newBalance: number) {
+    state.balance = newBalance;
+  }
+};
+
+// ---------------------- Action ----------------------
+
+const actions = {
+  async getMe() {
+    // lets get the updated data in server
+    const res = await getMe();
+
+    if (res.status === "OK") {
+      mutations.setBalance(res.result.balance);
+      return true;
+    }
+
+    return false;
+  }
+};
+
+// ---------------------- Export ----------------------
 export default function useMe() {
   return readonly({
-    state
+    state,
+    mutations,
+    actions
   });
 }
