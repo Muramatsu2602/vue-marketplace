@@ -1,14 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-// views
+
 import Login from "../views/Login.vue";
 import Store from "../views/Store.vue";
 import Signup from "../views/Signup.vue";
-
-// routes
-// www.exemplo.com.br/users/edit --> procura e dps renderiza o componente
-
-//query parameters
-// www.exemplo.com.br?key=value&key2=value2
+import Checkout from "../views/Checkout.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +18,14 @@ const routes: Array<RouteRecordRaw> = [
     path: "/store",
     name: "Store",
     component: Store,
+    meta: {
+      headerShown: true
+    }
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: Checkout,
     meta: {
       headerShown: true
     }

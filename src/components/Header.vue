@@ -7,17 +7,16 @@
       <router-link to="/store" class="menu-option">
         <font-awesome-icon size="2x" icon="store" />Store
       </router-link>
+      <router-link :to="{ name: 'Checkout' }" class="menu-option">
+        <font-awesome-icon size="2x" icon="shopping-cart" />Cart ({{
+          cartCount
+        }})
+      </router-link>
     </div>
     <div id="wallet" v-if="isLoggedIn" class="dropdown">
       <div id="walletButton" class="dropbtn">
-        <div>
-          <span> ${{ balance }}</span>
-          <font-awesome-icon size="2x" icon="wallet" />
-        </div>
-        <div>
-          <span> {{ cartCount }}</span>
-          <font-awesome-icon size="2x" icon="shopping-cart" />
-        </div>
+        <span> ${{ balance }}</span>
+        <font-awesome-icon size="2x" icon="wallet" />
       </div>
     </div>
     <div id="exit" v-if="isLoggedIn" class="dropdown">
@@ -72,7 +71,7 @@ export default defineComponent({
       logOutHandler,
       displayAlertHandler,
       balance,
-      cartCount
+      cartCount,
     };
   },
 });
@@ -154,14 +153,15 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
 
-  width: 13rem;
-  margin-right: 2rem;
+  /* width: 13rem; */
+  width: 9rem;
+  /* margin-right: 2rem; */
 
   color: #2c3e50 !important;
   font-weight: 600;
 }
 
-#wallet span{
+#wallet span {
   margin-right: 0.5rem;
 }
 
