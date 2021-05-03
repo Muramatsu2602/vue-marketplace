@@ -7,7 +7,7 @@
       <router-link to="/store" class="menu-option">
         <font-awesome-icon size="2x" icon="store" />Store
       </router-link>
-      <router-link :to="{ name: 'Checkout' }" class="menu-option">
+      <router-link v-if="isLoggedIn" :to="{ name: 'Checkout' }" class="menu-option">
         <font-awesome-icon size="2x" icon="shopping-cart" />Cart ({{
           cartCount
         }})

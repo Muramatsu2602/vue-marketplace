@@ -5,7 +5,7 @@
 
       <div v-if="listOfCards.length" class="card-container">
         <div v-for="card in listOfCards" :key="card.id">
-          <card-component :card="card" @on-buy="buyHandler"/>
+          <card-component :card="card" @on-buy="buyHandler" />
         </div>
       </div>
 
@@ -64,7 +64,7 @@ export default defineComponent({
 
 <style lang='scss' scoped>
 .container {
-  margin-top: 5rem;
+  margin-top: 6rem;
 
   display: flex;
   flex-direction: column;
