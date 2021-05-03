@@ -9,9 +9,12 @@
           <img class="make-it-spin" src="../assets/website/atom.svg" alt="" />
           <h3>SciDeck 2.0</h3>
         </div>
-        <!-- <span v-if="error.type === 'PASSWORD'" class="signup-error"
+        <span v-if="error.type === 'WRONG_USER'" class="signin-error"
           >Error: {{ error.msg }}</span
-        > -->
+        >
+        <span v-if="error.type === 'WRONG_PASSWORD'" class="signin-error"
+          >Error: {{ error.msg }}</span
+        >
         <div class="input-section">
           <div class="form-field">
             <label for="username">Username</label>
@@ -70,21 +73,31 @@ export default defineComponent({
     const state = reactive({
       username: "",
       password: "",
+      error: {
+        type: "",
+        msg: "",
+      },
     });
 
     const login = async () => {
-      console.log("vamos fazer o login", state.username, state.password);
+      state.error.type = "";
+      state.error.msg = "";
 
       if (state.username && state.password) {
         const res = await auth.actions.login(state.username, state.password);
 
         if (res.status === "WRONG_USER") {
-          alert("Usuário inserido não existe!");
+          state.error.type = "WRONG_USER";
+          state.error.msg = "Usuário não encontrado!";
+          return;
         } else if (res.status === "WRONG_PASSWORD") {
-          alert("Senha digitada está incorreta!");
+          state.error.type = "WRONG_PASSWORD";
+          state.error.msg = "Senha incorreta!";
+          return;
         } else if (res.status === "OK") {
           console.log("Let's go in!");
           router.push("/");
+          return;
         }
       }
     };
@@ -295,5 +308,22 @@ export default defineComponent({
 .make-it-spin:hover {
   transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
+}
+
+.signin-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: var(--color-red);
+  color: white;
+
+  border-radius: 10px;
+  padding: 0.1rem;
+  margin-bottom: 0.4rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+
+  font-weight: bold;
 }
 </style>

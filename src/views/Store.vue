@@ -19,6 +19,11 @@
           <button>Buy Me</button>
         </div>
       </div>
+
+      <!-- When dealing with a real API (pokemon API was used in the course) -->
+      <!-- <div @click="loadMoreHandler" class="store-options-container">
+        <btn>Carregar Mais</btn>
+      </div> -->
     </div>
 
     <div v-else class="loading">
@@ -32,8 +37,10 @@ import { ref, defineComponent, computed } from "vue";
 
 import useAuth from "@/modules/auth";
 import useCards from "@/modules/cards";
+import Btn from "@/components/atoms/Btn.vue";
 
 export default defineComponent({
+  components: { Btn },
   setup() {
     // const auth = useAuth();
     const cards = useCards();
@@ -46,15 +53,12 @@ export default defineComponent({
       return cards.state.list;
     }); // this form doesnt require 'return'
     const busy = computed(() => cards.state.busy);
-    //functions
-    const incHandler = () => {
-      console.log("total", total.value);
-      total.value += 1;
-    };
 
+    //functions
+    const loadMoreHandler = () => {};
     cards.actions.loadCards();
 
-    return { total, incHandler, listOfCards, busy };
+    return { total, listOfCards, busy, loadMoreHandler };
   },
 });
 </script>
@@ -65,6 +69,8 @@ export default defineComponent({
 
   display: flex;
   flex-direction: column;
+
+  justify-content: space-between;
 }
 
 .loading {
@@ -162,7 +168,11 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
 
-  justify-content: space-between;
+  /* max-height: 70vh;
+  overflow-y: auto; */
+
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .card-cost {
@@ -227,5 +237,11 @@ h1 {
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+.store-options-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
 }
 </style>

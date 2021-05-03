@@ -60,6 +60,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   padding: 10px 25px 10px 25px;
+  z-index:10;
 
   background-color: var(--color-primary-medium);
 
