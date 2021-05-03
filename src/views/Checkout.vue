@@ -20,7 +20,7 @@
         Total Value: <strong> {{ total }}</strong>
       </div>
       <div>
-        <btn>Checkout!</btn>
+        <btn>Checkout <font-awesome-icon size="1x" icon="dollar-sign" /> </btn>
       </div>
     </div>
   </div>

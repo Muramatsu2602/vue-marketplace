@@ -16,6 +16,8 @@ import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faAtom } from "@fortawesome/free-solid-svg-icons";
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
+
 
 // Adding to the library
 library.add(faUserCircle);
@@ -25,6 +27,8 @@ library.add(faSignInAlt);
 library.add(faAtom);
 library.add(faWallet);
 library.add(faShoppingCart);
+library.add(faDollarSign);
+
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
