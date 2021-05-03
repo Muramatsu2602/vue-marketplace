@@ -59,8 +59,8 @@ export default defineComponent({
 #nav {
   display: flex;
   justify-content: space-between;
-  padding: 8px 25px 8px 25px;
-  /* height: 20px; */
+  padding: 10px 25px 10px 25px;
+
   background-color: var(--color-primary-medium);
 
   a {
@@ -109,15 +109,8 @@ export default defineComponent({
   width: 10rem;
   margin-right: 2rem;
 
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-
   color: #2c3e50;
   font-weight: 600;
-
-  /* transition: color 0.4s !important; */
 }
 
 #exitButton {

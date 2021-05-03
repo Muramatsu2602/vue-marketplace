@@ -21,14 +21,6 @@ export default defineComponent({
 
     auth.actions.loadUserData();
 
-    console.log(auth);
-
-    if (auth.state.token) {
-      console.log("Esta logado");
-    } else {
-      console.log("Nao esta logado");
-    }
-
     return {};
   },
 });

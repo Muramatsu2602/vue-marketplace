@@ -230,7 +230,7 @@ const actions = {
       });
 
       mutations.setBusy(false);
-    }, 500);
+    }, 1000);
   }
 };
 //-----------------Mutations--------------------------//

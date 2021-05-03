@@ -28,18 +28,9 @@ const mutations = {
   }
 };
 
-// Login's backend walkthrough
-// 1. Pega o usuario e senha
-// 2. Executa um funcao login
-// 3. faz chamada API
-// 4. trata a respostas
-//    1. Ok, faz a mutacao e coloca os dados do login no state
-//    2. WRONG_x, mostra que a msg de erro pro usuario
-
 const actions = {
   loadUserData() {
     const item = window.localStorage.getItem(STORAGE_KEY);
-
     if (item) {
       // put user's data into the right place
       mutations.login(JSON.parse(item));

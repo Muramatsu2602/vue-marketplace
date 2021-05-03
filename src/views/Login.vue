@@ -6,9 +6,12 @@
       </div>
       <div class="login-form">
         <div class="logo">
-          <img src="../assets/website/atom.svg" alt="" />
+          <img class="make-it-spin" src="../assets/website/atom.svg" alt="" />
           <h3>SciDeck 2.0</h3>
         </div>
+        <!-- <span v-if="error.type === 'PASSWORD'" class="signup-error"
+          >Error: {{ error.msg }}</span
+        > -->
         <div class="input-section">
           <div class="form-field">
             <label for="username">Username</label>
@@ -76,7 +79,9 @@ export default defineComponent({
         const res = await auth.actions.login(state.username, state.password);
 
         if (res.status === "WRONG_USER") {
-          // seta um msg de erro
+          alert("Usuário inserido não existe!");
+        } else if (res.status === "WRONG_PASSWORD") {
+          alert("Senha digitada está incorreta!");
         } else if (res.status === "OK") {
           console.log("Let's go in!");
           router.push("/");
@@ -278,5 +283,17 @@ export default defineComponent({
 
 .signup a:hover {
   text-decoration: underline;
+}
+
+.make-it-spin {
+  overflow: hidden;
+  transition-duration: 0.9s;
+  transition-property: transform;
+
+  animation: rotation 8s infinite linear;
+}
+.make-it-spin:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
 }
 </style>

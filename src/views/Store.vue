@@ -21,7 +21,9 @@
       </div>
     </div>
 
-    <div v-else class="loading">Loading your app...</div>
+    <div v-else class="loading">
+      <font-awesome-icon size="2x" icon="atom" spin /> Loading cards...
+    </div>
   </div>
 </template>
 
@@ -66,6 +68,11 @@ export default defineComponent({
 }
 
 .loading {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   font-size: var(--text-big);
   align-self: center;
   font-weight: bold;
