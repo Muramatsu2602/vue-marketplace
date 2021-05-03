@@ -16,7 +16,7 @@
             <div class="card-item">Defence: {{ card.defence }}</div>
           </div>
 
-          <button @click="buyHandler(card.id)">Buy Me</button>
+          <button @click="buyHandler(card)">Buy Me</button>
         </div>
       </div>
 
@@ -35,13 +35,15 @@
 <script lang='ts'>
 import { ref, defineComponent, computed } from "vue";
 
-import useCards from "@/modules/cards";
+import useCards, { Card } from "@/modules/cards";
 import Btn from "@/components/atoms/Btn.vue";
+import useMe from "@/modules/me";
 
 export default defineComponent({
   components: { Btn },
   setup() {
     const cards = useCards();
+    const me = useMe();
 
     const total = ref(0);
 
@@ -58,8 +60,9 @@ export default defineComponent({
       // cards.actions.loadMore();
     };
 
-    const buyHandler = (id: number) => {
-      console.log("ID: ", id);
+    const buyHandler = (card: Card) => {
+      console.log("ID: ", card.id);
+      me.mutations.addCardtoCart(card);
     };
 
     cards.actions.loadCards();

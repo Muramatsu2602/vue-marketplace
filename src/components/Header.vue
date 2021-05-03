@@ -10,8 +10,14 @@
     </div>
     <div id="wallet" v-if="isLoggedIn" class="dropdown">
       <div id="walletButton" class="dropbtn">
-        <span> ${{ balance }}</span>
-        <font-awesome-icon size="2x" icon="wallet" />
+        <div>
+          <span> ${{ balance }}</span>
+          <font-awesome-icon size="2x" icon="wallet" />
+        </div>
+        <div>
+          <span> {{ cartCount }}</span>
+          <font-awesome-icon size="2x" icon="shopping-cart" />
+        </div>
       </div>
     </div>
     <div id="exit" v-if="isLoggedIn" class="dropdown">
@@ -49,6 +55,7 @@ export default defineComponent({
     const isLoggedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);
     const balance = computed(() => me.state.balance);
+    const cartCount = computed(() => me.state.cart.length);
 
     const logOutHandler = () => {
       auth.actions.logout();
@@ -65,6 +72,7 @@ export default defineComponent({
       logOutHandler,
       displayAlertHandler,
       balance,
+      cartCount
     };
   },
 });
@@ -146,11 +154,15 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
 
-  width: 8rem;
+  width: 13rem;
   margin-right: 2rem;
 
   color: #2c3e50 !important;
   font-weight: 600;
+}
+
+#wallet span{
+  margin-right: 0.5rem;
 }
 
 #walletButton {

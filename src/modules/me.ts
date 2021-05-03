@@ -4,7 +4,7 @@ import { Card } from "./cards";
 
 export interface State {
   list: Card[];
-  checkout: Card[];
+  cart: Card[];
   balance: number;
 }
 
@@ -12,7 +12,7 @@ export interface State {
 
 const state: State = reactive({
   list: [],
-  checkout: [],
+  cart: [],
   balance: 0
 });
 
@@ -20,6 +20,10 @@ const state: State = reactive({
 const mutations = {
   setBalance(newBalance: number) {
     state.balance = newBalance;
+  },
+
+  addCardtoCart(card: Card){
+      state.cart.push(card);
   }
 };
 

@@ -14,11 +14,13 @@ export interface Card {
 interface State {
   list: Card[];
   busy: boolean;
+  nextUrl: string,
 }
 // -------------------------------------------
 const state: State = reactive({
   list: [],
-  busy: false
+  busy: false,
+  nextUrl: '',
 });
 
 // ----------------Actions--------------------
