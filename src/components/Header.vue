@@ -19,7 +19,9 @@
     </div>
     <div id="wallet" v-if="isLoggedIn" class="dropdown">
       <div id="walletButton" class="dropbtn">
-        <span> ${{ balance }}</span>
+        <span class="in-debt" v-if="balance <= 0"> ${{ balance }}</span>
+        <span v-else> ${{ balance }}</span>
+
         <font-awesome-icon size="2x" icon="wallet" />
       </div>
     </div>
@@ -88,6 +90,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.in-debt {
+  color: var(--color-red);
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
 #nav {
   display: flex;
   justify-content: space-between;

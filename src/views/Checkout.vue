@@ -5,10 +5,14 @@
       <p>Make sure you got everything!</p>
     </div>
 
-    <div class="card-container">
+    <div class="card-container" v-if="cart.length">
       <div v-for="card in cart" :key="card.id">
-        <card-component  :card="card" isCart @on-remove="removeHandler(card)" />
+        <card-component :card="card" isCart @on-remove="removeHandler(card)" />
       </div>
+    </div>
+    <div v-else class="empty-cart">
+      <font-awesome-icon size="2x" icon="frown" />
+      <h3>Your Cart is empty. For now...</h3>
     </div>
   </div>
   <div class="summary-container">
@@ -20,7 +24,9 @@
         Total Value: <strong> {{ total }}</strong>
       </div>
       <div>
-        <btn @click="buyHandler">Checkout <font-awesome-icon size="1x" icon="dollar-sign" /> </btn>
+        <btn @click="buyHandler"
+          >Checkout <font-awesome-icon size="1x" icon="dollar-sign" />
+        </btn>
       </div>
     </div>
   </div>
@@ -51,7 +57,6 @@ export default defineComponent({
 
     const buyHandler = () => {
       me.actions.buy().then((res) => {
-        // console.log("RES;", res);
         if (res === "OK") {
           router.push({ name: "Landing" });
         }

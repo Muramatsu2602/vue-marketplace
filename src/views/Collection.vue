@@ -15,9 +15,9 @@
       <h3>Your Collection is empty. For now...</h3>
     </div>
   </div>
-  <div v-if="myList.length" class="summary-container">
+  <!-- <div v-if="myList.length" class="summary-container">
     <div class="summary">Options?</div>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts">
@@ -32,7 +32,6 @@ import { ref } from "vue";
 export default defineComponent({
   components: { Btn, CardComponent },
   setup() {
-    const cards = useCards();
     const me = useMe();
     const total = ref(0);
 
@@ -44,10 +43,7 @@ export default defineComponent({
       me.actions.sell(card);
     };
 
-    const busy = computed(() => cards.state.busy);
-    cards.actions.loadCards();
-
-    return { total, myList, busy, sellHandler };
+    return { total, myList, sellHandler };
   },
 });
 </script>
