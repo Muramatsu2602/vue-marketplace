@@ -11,7 +11,12 @@
       <div class="card-item">Defence: {{ card.defence }}</div>
     </div>
 
-    <button @click="$emit('on-buy',card)">Buy Me</button>
+    <button class="button-buy" v-if="!isCart" @click="$emit('on-buy', card)">
+      Buy Me
+    </button>
+    <button class="button-remove" v-else @click="$emit('on-remove', card)">
+      Remove!
+    </button>
   </div>
 </template>
 
@@ -25,13 +30,11 @@ export default defineComponent({
 
   props: {
     card: { type: Object, required: true },
+    isCart: { type: Boolean, default: false },
   },
 
   setup() {
-
-   
-
-    return {  };
+    return {};
   },
 });
 </script>
@@ -94,7 +97,6 @@ export default defineComponent({
 }
 
 .card button {
-  background-color: var(--color-primary-light);
   padding: 0.5rem;
   margin: 0.5rem;
   border-radius: 10px;
@@ -103,9 +105,22 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.card button:hover {
+.button-buy {
+  background-color: var(--color-primary-light);
+}
+
+.button-buy:hover {
   background-color: var(--color-green); /* Green */
   color: white;
+}
+
+.button-remove {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.button-remove:hover {
+  background-color: var(--color-red-lighter);
 }
 
 .card-cost {

@@ -22,8 +22,15 @@ const mutations = {
     state.balance = newBalance;
   },
 
-  addCardtoCart(card: Card){
-      state.cart.push(card);
+  addCardtoCart(card: Card) {
+    state.cart.push(card);
+  },
+
+  removeCardFromCart(cardId: number) {
+    const idx = state.cart.findIndex(card => card.id === cardId);
+    if (idx > -1) {
+      state.cart.splice(idx, 1);
+    }
   }
 };
 
