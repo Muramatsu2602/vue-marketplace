@@ -7,7 +7,7 @@
 
     <div class="card-container" v-if="myList.length">
       <div v-for="card in myList" :key="card.id">
-        <card-component :card="card" @on-buy="sellHandler" />
+        <card-component @on-sell="sellHandler(card)" :card="card" isMine />
       </div>
     </div>
     <div v-else class="empty-collection">
@@ -16,9 +16,7 @@
     </div>
   </div>
   <div v-if="myList.length" class="summary-container">
-    <div class="summary">
-      Options?
-    </div>
+    <div class="summary">Options?</div>
   </div>
 </template>
 
@@ -38,14 +36,18 @@ export default defineComponent({
     const me = useMe();
     const total = ref(0);
 
-    // Computed Functions
+    // Computed
     const myList = me.getters.sortedList();
 
-    const busy = computed(() => cards.state.busy);
+    // Functions
+    const sellHandler = (card: Card) => {
+      me.actions.sell(card);
+    };
 
+    const busy = computed(() => cards.state.busy);
     cards.actions.loadCards();
 
-    return { total, myList, busy, };
+    return { total, myList, busy, sellHandler };
   },
 });
 </script>

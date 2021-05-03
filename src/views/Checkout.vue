@@ -7,7 +7,7 @@
 
     <div class="card-container">
       <div v-for="card in cart" :key="card.id">
-        <card-component :card="card" isCart @on-remove="removeHandler(card)" />
+        <card-component  :card="card" isCart @on-remove="removeHandler(card)" />
       </div>
     </div>
   </div>

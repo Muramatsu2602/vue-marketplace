@@ -11,7 +11,14 @@
       <div class="card-item">Defence: {{ card.defence }}</div>
     </div>
 
-    <button class="button-buy" v-if="!isCart" @click="$emit('on-buy', card)">
+    <button class="button-buy" v-if="isMine" @click="$emit('on-sell', card)">
+      Sell!
+    </button>
+    <button
+      class="button-buy"
+      v-else-if="!isCart"
+      @click="$emit('on-buy', card)"
+    >
       Buy Me
     </button>
     <button class="button-remove" v-else @click="$emit('on-remove', card)">
@@ -31,6 +38,7 @@ export default defineComponent({
   props: {
     card: { type: Object, required: true },
     isCart: { type: Boolean, default: false },
+    isMine: { type: Boolean, default: false },
   },
 
   setup() {

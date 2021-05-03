@@ -66,6 +66,19 @@ const actions = {
     });
 
     return "OK";
+  },
+
+  async sell(card: Card) {
+    const body = {
+      card_id: card.id
+    };
+
+    // TODO: Aqui foi a chamada pro servidor e voltou ok
+
+    const cardIdx = state.list.findIndex(c => c.id === card.id);
+    state.list.splice(cardIdx, 1);
+
+    
   }
 };
 
